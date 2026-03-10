@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController // 可以省去撰寫 @ResponseBody
-@RequestMapping("/api")
+@RequestMapping("/api") // 資源分組
 public class ApiController {
 	
 	/**
@@ -42,6 +42,15 @@ public class ApiController {
 		
 		String result = String.format("Hi %s, %d(%s)", username, userage, userage>=18?"成年":"未成年");
 		return result;
+	}
+	
+	// 3. 上述 2 的精簡寫法
+	// 方法參數名稱與請求參數名相同
+	@GetMapping("/greet2")
+	public String greet2(@RequestParam String name,
+						@RequestParam(required = false, defaultValue = "0") Integer age) {
+		
+		return greet(name, age);
 	}
 	
 	
