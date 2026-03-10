@@ -13,7 +13,7 @@ public class ApiController {
 	 * 網址1: http://localhost:8080/home
 	 * 網址2: http://localhost:8080/welcome
 	 * */
-	@GetMapping(value = {"/home", "/welcome"})
+	@GetMapping(value = {"/home", "/welcome"}, produces = "text/plain;charset=utf-8")
 	public String home() {
 		return "我是 API 首頁";
 	}
