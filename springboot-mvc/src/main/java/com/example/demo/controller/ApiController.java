@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.Iterator;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,6 +62,14 @@ public class ApiController {
 	 * 判斷: bmi <= 18 顯示過輕, bmi > 23 顯示過重
 	 * 執行結果: 身高:170cm 體重:60kg bmi=20.76(正常)
 	*/
+	@GetMapping("/bmi")
+	public String bmi(@RequestParam Double h, @RequestParam Double w) {
+		double bmi = w / Math.pow(h/100, 2);
+		String result = bmi <= 18 ? "過輕" : bmi > 23 ? "過重" : "正常";
+		return String.format("身高:%.0fcm 體重:%.0fkg bmi=%.2f(%s)", h, w, bmi, result);
+	}
+	
+	
 }
 
 
