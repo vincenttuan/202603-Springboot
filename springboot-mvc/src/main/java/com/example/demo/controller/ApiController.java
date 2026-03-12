@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.BMI;
+
 @RestController // 可以省去撰寫 @ResponseBody
 @RequestMapping("/api") // 資源分組
 public class ApiController {
@@ -67,6 +69,29 @@ public class ApiController {
 		double bmi = w / Math.pow(h/100, 2);
 		String result = bmi <= 18 ? "過輕" : bmi > 23 ? "過重" : "正常";
 		return String.format("身高:%.0fcm 體重:%.0fkg bmi=%.2f(%s)", h, w, bmi, result);
+	}
+	
+	/** 
+	 * 5. 回傳 json 結構
+	 * 路徑: /json/bmi?h=170&w=60
+	 * 網址: http://localhost:8080/api/json/bmi?h=170&w=60
+	 * 判斷: bmi <= 18 顯示過輕, bmi > 23 顯示過重
+	 * 執行結果: 
+	 * {
+	 *   "status": 200,
+	 *   "message": "BMI 計算成功",
+	 *   "data": {
+	 *     "height": 170.0,
+	 *     "weight": 60.0,
+	 *     "bmi": 20.76
+	 *   }
+	 * }
+	*/
+	@GetMapping(value = "/json/bmi")
+	public BMI calcBmi(@RequestParam Double h, @RequestParam Double w) {
+		double bmiValue = w / Math.pow(h/100, 2);
+		BMI bmi = new BMI(h, w, bmiValue);
+		return bmi;
 	}
 	
 	
