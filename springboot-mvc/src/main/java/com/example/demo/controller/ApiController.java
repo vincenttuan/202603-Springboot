@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.BMI;
+import com.example.demo.response.ApiResponse;
 
 @RestController // 可以省去撰寫 @ResponseBody
 @RequestMapping("/api") // 資源分組
@@ -88,10 +89,12 @@ public class ApiController {
 	 * }
 	*/
 	@GetMapping(value = "/json/bmi")
-	public BMI calcBmi(@RequestParam Double h, @RequestParam Double w) {
+	public ApiResponse<BMI> calcBmi(@RequestParam Double h, @RequestParam Double w) {
 		double bmiValue = w / Math.pow(h/100, 2);
 		BMI bmi = new BMI(h, w, bmiValue);
-		return bmi;
+		
+		ApiResponse<BMI> apiResponse = new ApiResponse<BMI>("計算成功", bmi);
+		return apiResponse;
 	}
 	
 	
