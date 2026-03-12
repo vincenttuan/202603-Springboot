@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.Iterator;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,7 +80,6 @@ public class ApiController {
 	 * 判斷: bmi <= 18 顯示過輕, bmi > 23 顯示過重
 	 * 執行結果: 
 	 * {
-	 *   "status": 200,
 	 *   "message": "BMI 計算成功",
 	 *   "data": {
 	 *     "height": 170.0,
@@ -89,12 +89,17 @@ public class ApiController {
 	 * }
 	*/
 	@GetMapping(value = "/json/bmi")
-	public ApiResponse<BMI> calcBmi(@RequestParam Double h, @RequestParam Double w) {
+	public ResponseEntity<ApiResponse<BMI>> calcBmi(@RequestParam Double h, @RequestParam Double w) {
+		if(h <= 0 || w <= 0) {
+			// badRequest => HTTP 400
+			return ResponseEntity.badRequest().body(new ApiResponse<>("身高體重參數錯誤", null));
+		}
+		
 		double bmiValue = w / Math.pow(h/100, 2);
 		BMI bmi = new BMI(h, w, bmiValue);
 		
-		ApiResponse<BMI> apiResponse = new ApiResponse<BMI>("計算成功", bmi);
-		return apiResponse;
+		// ok => HTTP 200
+		return ResponseEntity.ok(new ApiResponse<BMI>("計算成功", bmi));
 	}
 	
 	
