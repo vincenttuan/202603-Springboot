@@ -92,14 +92,14 @@ public class ApiController {
 	public ResponseEntity<ApiResponse<BMI>> calcBmi(@RequestParam Double h, @RequestParam Double w) {
 		if(h <= 0 || w <= 0) {
 			// badRequest => HTTP 400
-			return ResponseEntity.badRequest().body(new ApiResponse<>("身高體重參數錯誤", null));
+			return ResponseEntity.badRequest().body(ApiResponse.error("身高體重參數錯誤"));
 		}
 		
 		double bmiValue = w / Math.pow(h/100, 2);
 		BMI bmi = new BMI(h, w, bmiValue);
 		
 		// ok => HTTP 200
-		return ResponseEntity.ok(new ApiResponse<BMI>("計算成功", bmi));
+		return ResponseEntity.ok(ApiResponse.success("計算成功", bmi));
 	}
 	
 	
