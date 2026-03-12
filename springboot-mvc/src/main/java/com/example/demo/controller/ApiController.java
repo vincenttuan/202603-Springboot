@@ -128,6 +128,14 @@ public class ApiController {
 		return ResponseEntity.ok(ApiResponse.success("計算成功", data));
 	}
 	
+	/*
+	 * 7. Lab 練習: 得到多筆 score 資料
+	 * 路徑: "/json/score?score=80&score=100&score=50&score=70&score=30"
+	 * 網址: http://localhost:8080/json/api/score?score=80&score=100&score=50&score=70&score=30
+	 * 請自行設計一個方法，此方法可以
+	 * 印出: 最高分=?、最低分=?、平均=?、總分=?、及格分數列出=?、不及格分數列出=?
+	 */
+	
 	
 }
 
