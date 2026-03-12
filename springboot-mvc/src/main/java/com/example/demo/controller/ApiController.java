@@ -89,10 +89,16 @@ public class ApiController {
 	 * }
 	*/
 	@GetMapping(value = "/json/bmi")
-	public ResponseEntity<ApiResponse<BMI>> calcBmi(@RequestParam Double h, @RequestParam Double w) {
+	public ResponseEntity<ApiResponse<BMI>> calcBmi(@RequestParam(required = false) Double h, 
+													@RequestParam(required = false) Double w) {
+		if(h == null || w == null) {
+			// badRequest => HTTP 400
+			return ResponseEntity.badRequest().body(ApiResponse.error("請輸入身高與體重參數內容"));
+		}
+		
 		if(h <= 0 || w <= 0) {
 			// badRequest => HTTP 400
-			return ResponseEntity.badRequest().body(ApiResponse.error("身高體重參數錯誤"));
+			return ResponseEntity.badRequest().body(ApiResponse.error("身高或體重參數內容錯誤"));
 		}
 		
 		double bmiValue = w / Math.pow(h/100, 2);
