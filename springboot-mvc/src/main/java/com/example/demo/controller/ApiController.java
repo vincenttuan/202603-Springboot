@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.BMI;
+import com.example.demo.model.Book;
 import com.example.demo.response.ApiResponse;
 
 @RestController // 可以省去撰寫 @ResponseBody
@@ -176,7 +177,11 @@ public class ApiController {
 	 * 路徑: /json/book2?name=Math&price=12.5&amount=10&pub=true
 	 * 網址: http://localhost:8080/api/json/book2?name=Math&price=12.5&amount=10&pub=true
 	 */
-	 
+	@GetMapping(value = "/json/book2", produces = "application/json;charset=utf-8")
+	public ResponseEntity<ApiResponse<Book>> getBookInfo2(Book book) {
+		System.out.printf("book = %s%n", book);
+		return ResponseEntity.ok(ApiResponse.success("成功", book));
+	}
 	
 }
 
