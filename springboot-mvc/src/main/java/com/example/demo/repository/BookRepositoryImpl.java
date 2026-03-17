@@ -67,6 +67,7 @@ public class BookRepositoryImpl implements BookRepository {
 		if(optBook.isEmpty()) {
 			return false;
 		}
+		// 移除書籍
 		return books.remove(optBook.get());
 	}
 	
