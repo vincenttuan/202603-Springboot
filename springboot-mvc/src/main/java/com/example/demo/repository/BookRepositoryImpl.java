@@ -2,6 +2,7 @@ package com.example.demo.repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.springframework.stereotype.Repository;
@@ -23,20 +24,22 @@ public class BookRepositoryImpl implements BookRepository {
 	
 	@Override
 	public List<Book> findAllBooks() {
-		// TODO Auto-generated method stub
-		return null;
+		return books;
 	}
 
 	@Override
 	public Optional<Book> getBookById(Integer id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return books.stream().filter(book -> book.getId().equals(id)).findFirst();
 	}
 
 	@Override
 	public boolean addBook(Book book) {
-		// TODO Auto-generated method stub
-		return false;
+		// 建立 newId
+		OptionalInt optMaxId = books.stream().mapToInt(Book::getId).max(); // 取出目前 books 中 id 的最大值
+		int newId = optMaxId.isEmpty() ? 1 : optMaxId.getAsInt() + 1;
+		// 將 newId 設定給 book
+		book.setId(newId);
+		return books.add(book);
 	}
 
 	@Override
