@@ -74,7 +74,6 @@ public class BookServiceImpl implements BookService {
 		if(!bookRepository.deleteBook(id)) {
 			throw new BookException("刪除失敗, id: " + id);
 		}
-		
 	}
 	
 }
