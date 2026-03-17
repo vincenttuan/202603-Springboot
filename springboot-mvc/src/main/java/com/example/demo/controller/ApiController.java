@@ -179,6 +179,7 @@ public class ApiController {
 	 */
 	@GetMapping(value = "/json/book2", produces = "application/json;charset=utf-8")
 	public ResponseEntity<ApiResponse<Book>> getBookInfo2(Book book) {
+		book.setId(1); // 設定 id
 		System.out.printf("book = %s%n", book);
 		return ResponseEntity.ok(ApiResponse.success("成功", book));
 	}
