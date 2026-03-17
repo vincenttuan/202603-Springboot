@@ -233,7 +233,22 @@ public class ApiController {
 	 * 得到未出版(pub:false)的書籍
 	 * 網址: http://localhost:8080/api/json/book/pub/false
 	 * */
-	
+	@GetMapping(value = "/json/book/pub/{isPub}")
+	public ResponseEntity<ApiResponse<List<Book>>> queryBook(@PathVariable Boolean isPub) {
+		// 書庫
+		List<Book> books = List.of(
+				new Book(1, "小叮噹", 12.5, 20, true),
+				new Book(2, "老夫子", 10.5, 30, true),
+				new Book(3, "好小子", 9.5, 40, true),
+				new Book(4, "新樂園", 14.5, 50, false));
+		
+		// 過濾出刊/停刊
+		List<Book> queryBooks = books.stream().filter(book -> book.getPub().equals(isPub)).toList();
+		if(queryBooks.size() == 0) {
+			return ResponseEntity.badRequest().body(ApiResponse.error("查無" + (isPub?"出刊":"停刊") + "書籍資料"));
+		}
+		return ResponseEntity.ok(ApiResponse.success("查詢成功:" + (isPub?"出刊":"停刊"), queryBooks));
+	}
 	
 }
 
