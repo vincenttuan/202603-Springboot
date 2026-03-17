@@ -165,6 +165,7 @@ public class ApiController {
 	 * 網址: http://localhost:8080/api/json/book?name=English&price=10.5&amount=20&pub=false
 	 * 讓參數自動轉成 key/value 的 Map 集合
 	 * */
+	@GetMapping(value = "/json/book", produces = "application/json;charset=utf-8")
 	public ResponseEntity<ApiResponse<Object>> getBookInfo(@RequestParam Map<String, Object> bookMap) {
 		System.out.printf("bookMap = %s%n", bookMap);
 		return ResponseEntity.ok(ApiResponse.success("成功", bookMap));
@@ -173,6 +174,16 @@ public class ApiController {
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
