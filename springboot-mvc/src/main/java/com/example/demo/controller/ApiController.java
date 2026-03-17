@@ -171,7 +171,12 @@ public class ApiController {
 		return ResponseEntity.ok(ApiResponse.success("成功", bookMap));
 	}
 	
-	
+	/**
+	 * 9. 多筆參數轉 model
+	 * 路徑: /json/book2?name=Math&price=12.5&amount=10&pub=true
+	 * 網址: http://localhost:8080/api/json/book2?name=Math&price=12.5&amount=10&pub=true
+	 */
+	 
 	
 }
 
