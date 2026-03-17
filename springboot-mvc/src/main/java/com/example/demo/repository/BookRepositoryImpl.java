@@ -44,14 +44,30 @@ public class BookRepositoryImpl implements BookRepository {
 
 	@Override
 	public boolean updateBook(Integer id, Book book) {
-		// TODO Auto-generated method stub
-		return false;
+		// 透過 id 找到要修改的書
+		Optional<Book> optBook = getBookById(id);
+		if(optBook.isEmpty()) {
+			return false;
+		}
+		// 得到要修改的書
+		Book orginalBook = optBook.get();
+		// 更新欄位資料
+		orginalBook.setAmount(book.getAmount());
+		orginalBook.setName(book.getName());
+		orginalBook.setPrice(book.getPrice());
+		orginalBook.setPub(book.getPub());
+		
+		return true;
 	}
 
 	@Override
 	public boolean deleteBook(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
+		// 透過 id 找到要刪除的書
+		Optional<Book> optBook = getBookById(id);
+		if(optBook.isEmpty()) {
+			return false;
+		}
+		return books.remove(optBook.get());
 	}
 	
 }
