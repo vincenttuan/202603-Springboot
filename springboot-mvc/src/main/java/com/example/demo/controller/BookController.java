@@ -176,11 +176,33 @@ public class BookController {
 	
 	// PATCH /book/name/{id} 部分更新(只改名稱) 
 	// 方法參數 @PathVariable Integer id, @RequestBody Book book
-	
+	@PatchMapping("/name/{id}")
+	public ResponseEntity<ApiResponse<Book>> updateName(@PathVariable Integer id, @RequestBody Book book) {
+		try {
+			// 修改
+			bookService.updateBookName(id, book.getName());
+			// 重查
+			book = bookService.getBookById(id);
+			return ResponseEntity.ok(ApiResponse.success("修改書名成功", book));
+		} catch (BookException e) {
+			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage())); 
+		}
+	}
 	
 	// PATCH /book/price/{id} 部分更新(只改價格)
 	// 方法參數 @PathVariable Integer id, @RequestBody Book book
-	
+	@PatchMapping("/price/{id}")
+	public ResponseEntity<ApiResponse<Book>> updatePrice(@PathVariable Integer id, @RequestBody Book book) {
+		try {
+			// 修改
+			bookService.updateBookPrice(id, book.getPrice());
+			// 重查
+			book = bookService.getBookById(id);
+			return ResponseEntity.ok(ApiResponse.success("修改價格成功", book));
+		} catch (BookException e) {
+			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage())); 
+		}
+	}
 	
 }
 
