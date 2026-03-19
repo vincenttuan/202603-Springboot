@@ -148,8 +148,10 @@ public class BookController {
 	@PutMapping("/{id}")
 	public ResponseEntity<ApiResponse<Book>> updateBook(@PathVariable Integer id, @RequestBody Book book) {
 		try {
+			// 修改
 			bookService.updateBook(id, book);
-			book.setId(id); // 設定 id
+			// 重查該筆
+			book = bookService.getBookById(id);
 			return ResponseEntity.ok(ApiResponse.success("修改成功", book));
 		} catch (BookException e) {
 			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage())); 
