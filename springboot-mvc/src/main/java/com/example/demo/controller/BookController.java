@@ -174,10 +174,12 @@ public class BookController {
 		}
 	}
 	
-	// PATCH /book/name/{id} 部分更新(只改名稱)
+	// PATCH /book/name/{id} 部分更新(只改名稱) 
+	// 方法參數 @PathVariable Integer id, @RequestBody Book book
 	
 	
 	// PATCH /book/price/{id} 部分更新(只改價格)
+	// 方法參數 @PathVariable Integer id, @RequestBody Book book
 	
 	
 }
