@@ -149,6 +149,7 @@ public class BookController {
 	public ResponseEntity<ApiResponse<Book>> updateBook(@PathVariable Integer id, @RequestBody Book book) {
 		try {
 			bookService.updateBook(id, book);
+			book.setId(id); // 設定 id
 			return ResponseEntity.ok(ApiResponse.success("修改成功", book));
 		} catch (BookException e) {
 			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage())); 
