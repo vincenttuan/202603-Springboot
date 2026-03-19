@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.exception.BookException;
 import com.example.demo.model.Book;
 import com.example.demo.response.ApiResponse;
 import com.example.demo.service.BookService;
@@ -95,6 +97,7 @@ public class BookController {
 	//@Qualifier("bookServiceImpl") // 若該 interface 只有一個實現類,則 @Qualifier 可以省略
 	private BookService bookService;
 	
+	// GET /book 查詢全部書籍
 	@GetMapping
 	public ResponseEntity<ApiResponse<List<Book>>> findAllBooks() {
 		List<Book> books = bookService.findAllBooks();
@@ -103,6 +106,17 @@ public class BookController {
 		}
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", books));
 	}
+	
+	// GET /book/{id} 查詢單一書籍
+	@GetMapping("/{id}")
+	public ResponseEntity<ApiResponse<Book>> getBookById(@PathVariable Integer id) {
+		try {
+			Book book = bookService.getBookById(id);
+			return ResponseEntity.ok(ApiResponse.success("查詢成功", book));
+		} catch (BookException e) {
+			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+		}
+	}	
 	
 }
 
