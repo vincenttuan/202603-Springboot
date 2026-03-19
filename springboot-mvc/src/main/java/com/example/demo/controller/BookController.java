@@ -115,93 +115,64 @@ public class BookController {
 	// GET /book/{id} 查詢單一書籍
 	@GetMapping("/{id}")
 	public ResponseEntity<ApiResponse<Book>> getBookById(@PathVariable Integer id) {
-		try {
-			Book book = bookService.getBookById(id);
-			return ResponseEntity.ok(ApiResponse.success("查詢成功", book));
-		} catch (BookException e) {
-			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
-		}
+		Book book = bookService.getBookById(id);
+		return ResponseEntity.ok(ApiResponse.success("查詢成功", book));
 	}	
 	
 	// POST /book 新增書籍
 	@PostMapping
 	public ResponseEntity<ApiResponse<Book>> addBook(@RequestBody Book book) {
-		try {
-			bookService.addBook(book);
-			return ResponseEntity.ok(ApiResponse.success("新增成功", book));
-		} catch (BookException e) {
-			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
-		}
+		bookService.addBook(book);
+		return ResponseEntity.ok(ApiResponse.success("新增成功", book));
 	}
 	
 	// DELETE /book/{id} 刪除書籍
 	@DeleteMapping("/{id}")
 	public ResponseEntity<ApiResponse<String>> deleteBook(@PathVariable Integer id) {
-		try {
-			bookService.deleteBook(id);
-			return ResponseEntity.ok(ApiResponse.success("刪除成功", "id="+id));
-		} catch (BookException e) {
-			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage())); 
-		}
+		bookService.deleteBook(id);
+		return ResponseEntity.ok(ApiResponse.success("刪除成功", "id="+id));
 	}
 	
 	// PUT /book/{id} 更新整本書 (完整更新)
 	@PutMapping("/{id}")
 	public ResponseEntity<ApiResponse<Book>> updateBook(@PathVariable Integer id, @RequestBody Book book) {
-		try {
-			// 修改
-			bookService.updateBook(id, book);
-			// 重查該筆
-			book = bookService.getBookById(id);
-			return ResponseEntity.ok(ApiResponse.success("修改成功", book));
-		} catch (BookException e) {
-			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage())); 
-		}
-		
+		// 修改
+		bookService.updateBook(id, book);
+		// 重查該筆
+		book = bookService.getBookById(id);
+		return ResponseEntity.ok(ApiResponse.success("修改成功", book));
 	}
 	
 	// PATCH /book/{id} 部分更新(名稱 + 價格)
 	@PatchMapping("/{id}")
 	public ResponseEntity<ApiResponse<Book>> updateNameAndPrice(@PathVariable Integer id, @RequestBody Book book) {
-		try {
-			// 修改
-			bookService.updateBookNameAndPrice(id, book.getName(), book.getPrice());
-			// 重查
-			book = bookService.getBookById(id);
-			return ResponseEntity.ok(ApiResponse.success("修改書名與價格成功", book));
-		} catch (BookException e) {
-			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage())); 
-		}
+		// 修改
+		bookService.updateBookNameAndPrice(id, book.getName(), book.getPrice());
+		// 重查
+		book = bookService.getBookById(id);
+		return ResponseEntity.ok(ApiResponse.success("修改書名與價格成功", book));
 	}
 	
 	// PATCH /book/name/{id} 部分更新(只改名稱) 
 	// 方法參數 @PathVariable Integer id, @RequestBody Book book
 	@PatchMapping("/name/{id}")
 	public ResponseEntity<ApiResponse<Book>> updateName(@PathVariable Integer id, @RequestBody Book book) {
-		try {
-			// 修改
-			bookService.updateBookName(id, book.getName());
-			// 重查
-			book = bookService.getBookById(id);
-			return ResponseEntity.ok(ApiResponse.success("修改書名成功", book));
-		} catch (BookException e) {
-			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage())); 
-		}
+		// 修改
+		bookService.updateBookName(id, book.getName());
+		// 重查
+		book = bookService.getBookById(id);
+		return ResponseEntity.ok(ApiResponse.success("修改書名成功", book));
 	}
 	
 	// PATCH /book/price/{id} 部分更新(只改價格)
 	// 方法參數 @PathVariable Integer id, @RequestBody Book book
 	@PatchMapping("/price/{id}")
 	public ResponseEntity<ApiResponse<Book>> updatePrice(@PathVariable Integer id, @RequestBody Book book) {
-		try {
-			// 修改
-			bookService.updateBookPrice(id, book.getPrice());
-			// 重查
-			book = bookService.getBookById(id);
-			return ResponseEntity.ok(ApiResponse.success("修改價格成功", book));
-		} catch (BookException e) {
-			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage())); 
-		}
+		// 修改
+		bookService.updateBookPrice(id, book.getPrice());
+		// 重查
+		book = bookService.getBookById(id);
+		return ResponseEntity.ok(ApiResponse.success("修改價格成功", book));
 	}
 	
 }
