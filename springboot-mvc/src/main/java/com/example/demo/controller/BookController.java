@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -158,6 +159,26 @@ public class BookController {
 		}
 		
 	}
+	
+	// PATCH /book/{id} 部分更新(名稱 + 價格)
+	@PatchMapping("/{id}")
+	public ResponseEntity<ApiResponse<Book>> updateNameAndPrice(@PathVariable Integer id, @RequestBody Book book) {
+		try {
+			// 修改
+			bookService.updateBookNameAndPrice(id, book.getName(), book.getPrice());
+			// 重查
+			book = bookService.getBookById(id);
+			return ResponseEntity.ok(ApiResponse.success("修改書名與價格成功", book));
+		} catch (BookException e) {
+			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage())); 
+		}
+	}
+	
+	// PATCH /book/name/{id} 部分更新(只改名稱)
+	
+	
+	// PATCH /book/price/{id} 部分更新(只改價格)
+	
 	
 }
 
