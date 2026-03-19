@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,11 +42,11 @@ import com.example.demo.service.BookService;
  * GET         /book          查詢全部書籍
  * GET         /book/{id}     查詢單一書籍
  * POST        /book          新增書籍
+ * DELETE      /book/{id}     刪除書籍
  * PUT         /book/{id}     更新整本書 (完整更新)
  * PATCH       /book/{id}     部分更新 (name + price)
  * PATCH       /book/name/{id}   只改名稱
  * PATCH       /book/price/{id}  只改價格
- * DELETE      /book/{id}     刪除書籍
  *
  * --------------------------------------------
  * 📌 分層架構 (MVC)：
@@ -141,6 +142,18 @@ public class BookController {
 		} catch (BookException e) {
 			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage())); 
 		}
+	}
+	
+	// PUT /book/{id} 更新整本書 (完整更新)
+	@PutMapping("/{id}")
+	public ResponseEntity<ApiResponse<Book>> updateBook(@PathVariable Integer id, @RequestBody Book book) {
+		try {
+			bookService.updateBook(id, book);
+			return ResponseEntity.ok(ApiResponse.success("修改成功", book));
+		} catch (BookException e) {
+			return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage())); 
+		}
+		
 	}
 	
 }
