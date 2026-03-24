@@ -43,9 +43,11 @@ async function findAllBooks() {
 	try {
 		const response = await fetch(API_BASE_URL);
 		const result = await handleResponse(response);
-		console.log(result);
+		console.log(result); // debug 用
+		renderBookTable(result.data); // 資料渲染到表格中
 		showMessage(result.message || "查詢全部成功", "success");
 	} catch(error) {
+		renderBookTable([]); // 資料渲染空白資料
 		showMessage(error.message, "error");
 	}
 }
@@ -55,6 +57,32 @@ async function findBookById() {
 	
 }
 
+// 渲染表格
+function renderBookTable(books) {
+	if(!books || books.length === 0) {
+		bookTableBody.innerHTML = `
+			<tr>
+				<td colspan="5" class="empty-now">目前沒有資料</td>
+			</tr>
+		`;
+		return;
+	}
+	
+	let html = "";
+	books.forEach(book => {
+		html += `
+			<tr>
+				<td>${book.id}</td>
+				<td>${book.name}</td>
+				<td>${book.price}</td>
+				<td>${book.amount}</td>
+				<td>${book.pub}</td>
+			</tr>
+		`;
+	});
+	
+	bookTableBody.innerHTML = html; 
+}
 
 
 
