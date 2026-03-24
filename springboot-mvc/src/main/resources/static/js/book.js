@@ -54,7 +54,26 @@ async function findAllBooks() {
 
 // 查詢單筆
 async function findBookById() {
-	
+	try {
+		const id = searchId.value;
+		
+		if(!id) {
+			showMessage("請輸入要查詢的書籍 ID", "error");
+			return;
+		}
+		
+		const response = await fetch(`${API_BASE_URL}/${id}`);
+		const result = await handleResponse(response);
+		
+		console.log(result); // debug 用, 顯示 json 物件
+		console.log(JSON.stringify(result)); // debug 用, 顯示 json 字串
+		
+		singleResult.textContent = JSON.stringify(result); 
+		showMessage(result.message || "單筆查詢成功", "success");
+	} catch(error) {
+		singleResult.textContent = "查詢失敗";
+		showMessage(error.message, "error");
+	}
 }
 
 // 渲染表格
