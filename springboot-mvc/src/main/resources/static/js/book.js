@@ -15,7 +15,7 @@ const searchId = document.getElementById("searchId");
 const findOneBtn = document.getElementById("findOneBtn");
 const findAllBtn = document.getElementById("findAllBtn");
 const singleResult = document.getElementById("singleResult");
-const bookTableBody = document.getElementById("singleResult");
+const bookTableBody = document.getElementById("bookTableBody");
 
 // 綁定查詢按鈕事件
 findOneBtn.addEventListener("click", findBookById);
