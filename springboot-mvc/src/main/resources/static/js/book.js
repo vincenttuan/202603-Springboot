@@ -9,7 +9,7 @@
 // API 基本路徑
 const API_BASE_URL = "/book";
 
-// 抓取畫面元素(id)
+// 抓取畫面元素(id)-查詢相關
 const messageBox = document.getElementById("messageBox");
 const searchId = document.getElementById("searchId");
 const findOneBtn = document.getElementById("findOneBtn");
@@ -17,9 +17,20 @@ const findAllBtn = document.getElementById("findAllBtn");
 const singleResult = document.getElementById("singleResult");
 const bookTableBody = document.getElementById("bookTableBody");
 
+// 抓取畫面元素(id)-新增表單相關
+const bookForm = document.getElementById("bookForm");
+const bookName = document.getElementById("bookName");
+const bookPrice = document.getElementById("bookPrice");
+const bookAmount = document.getElementById("bookAmount");
+const bookPub = document.getElementById("bookPub");
+const addBtn = document.getElementById("addBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+
 // 綁定查詢按鈕事件
 findOneBtn.addEventListener("click", findBookById);
 findAllBtn.addEventListener("click", findAllBooks);
+addBtn.addEventListener("click", addBook);
 
 // 顯示訊息
 function showMessage(message, type = "info") {
@@ -36,6 +47,39 @@ async function handleResponse(response) {
 	}
 	
 	return result;
+}
+
+// 新增書籍
+async function addBook() {
+	try {
+		
+		const book = {
+			name: bookName.value.trim(),
+			price: bookPrice.value ? Number(bookPrice.value) : null,
+			amount: bookAmount.value ? Number(bookAmount.value) : null,
+			pub: bookPub.checked
+		};
+		
+		if(!book.name || !book.price === null || book.amount === null) {
+			showMessage("請輸入完整書名, 價格, 數量", "error");
+			return;
+		}
+		
+		const response = await fetch(API_BASE_URL, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(book)
+		});
+		
+		const result = await handleResponse(response);
+		
+		showMessage(result.message || "新增成功", "success");
+		
+	} catch(error) {
+		showMessage(error.message, "error");
+	}
 }
 
 // 查詢全部
