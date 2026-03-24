@@ -76,7 +76,7 @@ function renderBookTable(books) {
 				<td>${book.name}</td>
 				<td>${book.price}</td>
 				<td>${book.amount}</td>
-				<td>${book.pub}</td>
+				<td>${book.pub ? "是" : "否"}</td>
 			</tr>
 		`;
 	});
