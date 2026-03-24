@@ -151,6 +151,19 @@ function renderBookTable(books) {
 	bookTableBody.innerHTML = html; 
 }
 
+// 避免文字直接塞進 html
+function escapeHtml(text) {
+	if(text === null || text === undefined) {
+		return "";
+	}
+	
+	return String(text)
+			.replaceAll("&", "&amp;")
+			.replaceAll("<", "&lt;")
+			.replaceAll(">", "&gt;")
+			.replaceAll('"', "&quot;")
+			.replaceAll("'", "&#39;");
+}
 
 
 
