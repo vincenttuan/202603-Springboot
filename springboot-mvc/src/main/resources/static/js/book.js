@@ -75,6 +75,7 @@ async function addBook() {
 		
 		const result = await handleResponse(response);
 		
+		console.log(result);
 		showMessage(result.message || "新增成功", "success");
 		
 	} catch(error) {
