@@ -140,7 +140,7 @@ function renderBookTable(books) {
 		html += `
 			<tr>
 				<td>${book.id}</td>
-				<td>${book.name}</td>
+				<td>${escapeHtml(book.name)}</td>
 				<td>${book.price}</td>
 				<td>${book.amount}</td>
 				<td>${book.pub ? "是" : "否"}</td>
