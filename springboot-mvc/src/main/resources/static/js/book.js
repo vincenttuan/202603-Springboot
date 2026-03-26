@@ -19,18 +19,25 @@ const bookTableBody = document.getElementById("bookTableBody");
 
 // 抓取畫面元素(id)-新增表單相關
 const bookForm = document.getElementById("bookForm");
+const bookId = document.getElementById("bookId");
 const bookName = document.getElementById("bookName");
 const bookPrice = document.getElementById("bookPrice");
 const bookAmount = document.getElementById("bookAmount");
 const bookPub = document.getElementById("bookPub");
 const addBtn = document.getElementById("addBtn");
+const updateBtn = document.getElementById("updateBtn");
 const resetBtn = document.getElementById("resetBtn");
 
+// 紀錄目前表單模式
+// create = 新增模式
+// update = 修改模式
+let formMode = "create";
 
 // 綁定查詢按鈕事件
 findOneBtn.addEventListener("click", findBookById);
 findAllBtn.addEventListener("click", findAllBooks);
 addBtn.addEventListener("click", addBook);
+updateBtn.addEventListener("click", updateBook);
 
 // 顯示訊息
 function showMessage(message, type = "info") {
@@ -52,6 +59,17 @@ async function handleResponse(response) {
 // 表單新增的資料
 function getBookFormDataForCreate() {
 	return 	{
+		name: bookName.value.trim(),
+		price: bookPrice.value ? Number(bookPrice.value) : null,
+		amount: bookAmount.value ? Number(bookAmount.value) : null,
+		pub: bookPub.checked
+	};
+}
+
+// 表單修改的資料
+function getBookFormDataForUpdate() {
+	return 	{
+		id: bookId.value ? Number(bookId.value) : null,
 		name: bookName.value.trim(),
 		price: bookPrice.value ? Number(bookPrice.value) : null,
 		amount: bookAmount.value ? Number(bookAmount.value) : null,
