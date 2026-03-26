@@ -224,7 +224,7 @@ function renderBookTable(books) {
 	books.forEach(book => {
 		html += `
 			<tr>
-				<td>${book.id}</td>
+				<td onclick="loadBookById(${book.id})" style="cursor: hand" title="按我一下即可修改資料">${book.id}</td>
 				<td>${escapeHtml(book.name)}</td>
 				<td>${book.price}</td>
 				<td>${book.amount}</td>
