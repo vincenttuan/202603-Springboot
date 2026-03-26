@@ -214,7 +214,7 @@ function renderBookTable(books) {
 	if(!books || books.length === 0) {
 		bookTableBody.innerHTML = `
 			<tr>
-				<td colspan="5" class="empty-now">目前沒有資料</td>
+				<td colspan="6" class="empty-now">目前沒有資料</td>
 			</tr>
 		`;
 		return;
@@ -229,6 +229,9 @@ function renderBookTable(books) {
 				<td>${book.price}</td>
 				<td>${book.amount}</td>
 				<td>${book.pub ? "是" : "否"}</td>
+				<td>
+					<button onclick="loadBookById(${book.id})">修改</button>
+				</td>
 			</tr>
 		`;
 	});
