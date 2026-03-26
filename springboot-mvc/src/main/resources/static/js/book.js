@@ -208,6 +208,23 @@ async function loadBookById(id) {
 	}
 }
 
+// 刪除書籍
+async function deleteBookById(id) {
+	try {
+		const response = await fetch(`${API_BASE_URL}/${id}`, {
+			method: "DELETE"
+		});
+		
+		const result = await handleResponse(response);
+		
+		showMessage(result.message || "刪除成功", "success");
+		findAllBooks();
+		
+	} catch(error) {
+		singleResult.textContent = `刪除書籍 ID: ${id} 失敗`;
+		showMessage(error.message, "error");
+	}
+}
 
 // 渲染表格
 function renderBookTable(books) {
