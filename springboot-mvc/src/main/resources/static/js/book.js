@@ -43,6 +43,12 @@ resetBtn.addEventListener("click", () => {
 	updateFormMode("create");
 });
 
+// 頁面載入初始化
+window.addEventListener("DOMContentLoaded", () => {
+	findAllBooks();
+	updateFormMode("create");
+});
+
 // 顯示訊息
 function showMessage(message, type = "info") {
 	messageBox.textContent = message;
