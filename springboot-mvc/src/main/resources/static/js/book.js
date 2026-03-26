@@ -192,6 +192,23 @@ async function findBookById() {
 	}
 }
 
+// 由表格載入資料到表單
+async function loadBookById(id) {
+	try {
+		const response = await fetch(`${API_BASE_URL}/${id}`);
+		const result = await handleResponse(response);
+		
+		singleResult.textContent = JSON.stringify(result); 
+		showMessage(`已載入書籍 ID: ${id}`, "success");
+		fillForm(result.data); // 將查到後的資料帶回表單
+		
+	} catch(error) {
+		singleResult.textContent = `載入書籍 ID: ${id} 失敗`;
+		showMessage(error.message, "error");
+	}
+}
+
+
 // 渲染表格
 function renderBookTable(books) {
 	if(!books || books.length === 0) {
