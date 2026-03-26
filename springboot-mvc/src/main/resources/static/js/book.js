@@ -109,6 +109,41 @@ async function addBook() {
 	}
 }
 
+// 修改書籍
+async function updateBook() {
+	try {
+		
+		const book = getBookFormDataForUpdate();
+		
+		if(!book.id) {
+			showMessage("修改時必須要有 ID", "error");
+			return;
+		}
+		
+		if(!book.name || book.price === null || book.amount === null) {
+			showMessage("請輸入完整的書名,價格,數量", "error");
+			return;
+		}
+		
+		const response = await fetch(`${API_BASE_URL}/${book.id}`, {
+			method: "PUT",
+			headers: {
+				"Content-type": "application/json"
+			},
+			body: JSON.stringify(book)
+		});
+		
+		const result = await handleResponse(response);
+		
+		showMessage(result.message || "修改成功", "success");
+		singleResult.textContent = JSON.stringify(result.data);
+		findAllBooks();
+		
+	} catch(err) {
+		showMessage(error.message, "error");
+	}
+}
+
 // 查詢全部
 async function findAllBooks() {
 	try {
