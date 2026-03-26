@@ -231,7 +231,7 @@ function renderBookTable(books) {
 				<td>${book.pub ? "是" : "否"}</td>
 				<td>
 					<button onclick="loadBookById(${book.id})">修改</button>
-					<button class="danger">刪除</button>
+					<button onclick="deleteBookById(${book.id})" class="danger">刪除</button>
 				</td>
 			</tr>
 		`;
