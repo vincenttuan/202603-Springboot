@@ -210,6 +210,14 @@ async function loadBookById(id) {
 
 // 刪除書籍
 async function deleteBookById(id) {
+	
+	const isConfirmed = confirm(`你確定要刪除書籍 ID: ${id} 嗎?`);
+	
+	if(!isConfirmed) {
+		showMessage(`已取消刪除書籍 ID: ${id}`, "info");
+		return;
+	}
+	
 	try {
 		const response = await fetch(`${API_BASE_URL}/${id}`, {
 			method: "DELETE"
