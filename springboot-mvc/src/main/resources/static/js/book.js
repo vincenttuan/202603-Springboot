@@ -38,11 +38,28 @@ findOneBtn.addEventListener("click", findBookById);
 findAllBtn.addEventListener("click", findAllBooks);
 addBtn.addEventListener("click", addBook);
 updateBtn.addEventListener("click", updateBook);
+resetBtn.addEventListener("click", () => {
+	bookForm.reset();
+	updateFormMode("create");
+});
 
 // 顯示訊息
 function showMessage(message, type = "info") {
 	messageBox.textContent = message;
 	messageBox.className = `message-box ${type}`;
+}
+
+// 統一控制模式的方法
+function updateFormMode(mode) {
+	formMode = mode;
+	
+	if(mode === "create") {
+		addBtn.disabled = false;
+		updateBtn.disabled = true;
+	} else {
+		addBtn.disabled = true;
+		updateBtn.disabled = false;
+	}
 }
 
 // 統一處理 fetch 回應
@@ -63,6 +80,8 @@ function fillForm(book) {
 	bookPrice.value = book.price ?? "";
 	bookAmount.value = book.amount ?? "";
 	bookPub.checked = book.pub ?? false;
+	
+	updateFormMode('update');
 }
 
 // 表單新增的資料
