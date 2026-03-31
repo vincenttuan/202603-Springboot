@@ -37,7 +37,9 @@ function App() {
                         products.map((product) => {
                             const subtotal = product.price * product.qty;
                             return(
-                                <tr key={product.id}>
+                                <tr key={product.id} 
+                                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = "lightblue"}
+                                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = ""}>
                                     <td>{product.id}</td>
                                     <td>{product.category}</td>
                                     <td>{product.name}</td>
