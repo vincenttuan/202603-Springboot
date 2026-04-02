@@ -13,7 +13,14 @@ function App() {
         console.log(newText);
     }
 
-    const handleAddMessage = (e) => {
+    const handleKeyDown = (e) => {
+        // 偵測到使用者按下 enter 鍵
+        if(e.key === 'Enter') {
+            handleAddMessage();
+        }
+    }
+
+    const handleAddMessage = () => {
         //setMessages(messages.concat(text));
         setMessages([...messages, text]);
     }
@@ -21,7 +28,9 @@ function App() {
     return (
         <>
             <h1>留言板</h1>
-            <input type='text' value={text} onChange={handleInputChange} />
+            <input type='text' value={text} 
+                    onChange={handleInputChange} 
+                    onKeyDown={handleKeyDown} />
             <button onClick={handleAddMessage}>Send</button>
             <p />
             <ul>
