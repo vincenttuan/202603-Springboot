@@ -9,8 +9,9 @@ function App() {
 
     // 方法
     function handleClick() {
-        setCount(count + 1);
-        console.log(count);
+        //const newCount = count + 1; // 同步
+        setCount(newCount); // 非同步(setCount在 react 設計上的時候是非同步模式)
+        //console.log(newCount);
     }
 
     return (
