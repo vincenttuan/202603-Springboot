@@ -3,7 +3,8 @@ import { useState } from "react"
 import './App.css'
 
 function App() {
-    const [text, setText] = useState('')
+    const [text, setText] = useState(''); // 輸入框內的留言資料
+    const [messages, setMessages] = useState([]) // 保存並累計留言資料
 
     const handleInputChange = (e) => {
         // e.target.value 是 input 欄位的內容
@@ -12,14 +13,23 @@ function App() {
         console.log(newText);
     }
 
+    const handleAddMessage = (e) => {
+        //setMessages(messages.concat(text));
+        setMessages([...messages, text]);
+    }
+
     return (
         <>
             <h1>留言板</h1>
             <input type='text' value={text} onChange={handleInputChange} />
-            <button>Send</button>
+            <button onClick={handleAddMessage}>Send</button>
             <p />
             <ul>
-        
+                {
+                    messages.map((message, index) => (
+                        <li key={index}>{message}</li>
+                    ))
+                }
             </ul>
         </>
     )
