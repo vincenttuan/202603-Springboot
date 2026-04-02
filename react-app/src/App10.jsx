@@ -28,7 +28,7 @@ function App() {
     
     return (
         <>
-            <h1>學生成績表</h1>
+            <h1>學生成績表 I</h1>
             <table border={1} cellSpacing={0} cellPadding={4}>
                 <thead>
                     <tr>
