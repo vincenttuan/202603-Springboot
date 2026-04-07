@@ -35,9 +35,14 @@ function App () {
         );
     }
 
+    const handleTodoDelete = (id) => {
+        // 利用 todos.filter 來過濾不需要的資料
+        setTodos(todos.filter((todo) => todo.id !== id));
+    }
+
     return (
         <>
-            <h1>My TodoList 5</h1>
+            <h1>My TodoList 6</h1>
             <div>
                 <input type='text' value={todo} onChange={handleTodoChange} />
                 <button onClick={handleTodoAdd}>加入</button>
@@ -48,7 +53,7 @@ function App () {
                         <li key={todo.id} style={{textDecoration: todo.completed ? 'line-through' : 'none'}}>
                             {todo.id} - {todo.text}
                             <input type="checkbox" checked={todo.completed} onChange={() => toggleCompletion(todo.id)} />
-                            <button>X</button>
+                            <button onClick={() => handleTodoDelete(todo.id)}>X</button>
                         </li>
                     ))    
                 }
