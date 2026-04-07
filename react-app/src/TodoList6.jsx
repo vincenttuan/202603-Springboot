@@ -53,7 +53,10 @@ function App () {
                         <li key={todo.id} style={{textDecoration: todo.completed ? 'line-through' : 'none'}}>
                             {todo.id} - {todo.text}
                             <input type="checkbox" checked={todo.completed} onChange={() => toggleCompletion(todo.id)} />
-                            <button onClick={() => handleTodoDelete(todo.id)}>X</button>
+                            {!todo.completed &&
+                                (<button onClick={() => handleTodoDelete(todo.id)}>X</button>)
+                            }
+
                         </li>
                     ))    
                 }
