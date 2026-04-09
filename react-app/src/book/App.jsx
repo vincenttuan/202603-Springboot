@@ -38,13 +38,36 @@ function App() {
             ...prev,
             [name]: name === 'pub' ? checked : value
         }));
-        
+    }
+
+    // 新增
+    const handleSubmit = async(e) => {
+        e.preventDefault(); // 停止預設行為
+        try {
+            const method = 'POST';
+            const url = API_URL;
+            const res = await fetch(url, {
+                method,
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify(form)
+            });
+            const result = await res.json();
+            console.log(result);
+            if(res.ok) {
+                await fetchBooks(); // 重新查詢所有書籍
+                setForm({id: null, name: '', price: '', amount: '', pub: false}) // 清空表單
+            } else {
+                alert(result.message || '操作失敗');
+            }
+        } catch(e) {
+            console.error('錯誤:', e);
+        }
     }
 
     return (
         <>
             <h2>📚 書籍管理系統(使用 fetch)</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 書名：<input type="text" name="name" value={form.name} onChange={handleChange} required /><p />
                 價格：<input type="number" name="price" value={form.price} onChange={handleChange} required /><p />
                 數量：<input type="number" name="amount" value={form.amount} onChange={handleChange} required /><p />
