@@ -9,6 +9,7 @@ function App() {
     const [books, setBooks] = useState([]); // 書籍列表資料
     //const [form, setForm] = useState({id: null, name: 'demo', price: '10', amount: '20', pub: true}); // 表單內容
     const [form, setForm] = useState({id: null, name: '', price: '', amount: '', pub: false}); // 表單內容
+    const [editing, setEditing] = useState(false); // 是否為編輯(修改)模式
 
     // 讀取書籍資料
     const fetchBooks = async() => {
@@ -44,8 +45,8 @@ function App() {
     const handleSubmit = async(e) => {
         e.preventDefault(); // 停止預設行為
         try {
-            const method = 'POST';
-            const url = API_URL;
+            const method = editing ? 'PUT' : 'POST';
+            const url = editing ? `${API_URL}/${form.id}` : API_URL;
             const res = await fetch(url, {
                 method,
                 headers: {'Content-type': 'application/json'},
@@ -62,12 +63,14 @@ function App() {
         } catch(e) {
             console.error('錯誤:', e);
         }
+        // 恢復到新增狀態
+        setEditing(false);
     }
 
     // 修改功能
     const handleEdit = (book) => {
         setForm(book); // 將 book 資料填入到表單中
-        
+        setEditing(true);
     }
 
     return (
@@ -78,7 +81,7 @@ function App() {
                 價格：<input type="number" name="price" value={form.price} onChange={handleChange} required /><p />
                 數量：<input type="number" name="amount" value={form.amount} onChange={handleChange} required /><p />
                 出刊：<input type="checkbox" name="pub" checked={form.pub}  onChange={handleChange} /><p />
-                <button type="submit">新增書籍</button>
+                <button type="submit">{editing?'修改':'新增'}書籍</button>
             </form>
 
             <h2>📒 書籍列表</h2>
