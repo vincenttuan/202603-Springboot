@@ -4,6 +4,14 @@ import { useState,  useEffect } from 'react';
 
 const API_URL = 'http://localhost:8080/book'; // 後台 API
 
+/**
+ * 請拆分
+ * book/
+    ├─ App.jsx (主畫面)
+    ├─ BookForm.jsx (表單)
+    └─ BookList.jsx (列表)
+ */
+
 function App() {
 
     const [books, setBooks] = useState([]); // 書籍列表資料
