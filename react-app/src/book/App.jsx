@@ -64,6 +64,12 @@ function App() {
         }
     }
 
+    // 修改功能
+    const handleEdit = (book) => {
+        setForm(book); // 將 book 資料填入到表單中
+        
+    }
+
     return (
         <>
             <h2>📚 書籍管理系統(使用 fetch)</h2>
@@ -79,11 +85,12 @@ function App() {
             <table border={1} cellPadding={4}>
                 <thead>
                     <tr>
-                        <td>ID</td>
-                        <td>書名</td>
-                        <td>價格</td>
-                        <td>數量</td>
-                        <td>出刊</td>
+                        <th>ID</th>
+                        <th>書名</th>
+                        <th>價格</th>
+                        <th>數量</th>
+                        <th>出刊</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,6 +102,10 @@ function App() {
                                 <td>{book.price}</td>
                                 <td>{book.amount}</td>
                                 <td>{book.pub ? '是' : '否'}</td>
+                                <td>
+                                    <button onClick={() => handleEdit(book)}>修改</button>
+                                    <button>刪除</button>
+                                </td>
                             </tr>
                         ))
                     }
