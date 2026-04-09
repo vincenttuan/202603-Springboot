@@ -102,6 +102,15 @@ function App() {
                 數量：<input type="number" name="amount" value={form.amount} onChange={handleChange} required /><p />
                 出刊：<input type="checkbox" name="pub" checked={form.pub}  onChange={handleChange} /><p />
                 <button type="submit">{editing?'修改':'新增'}書籍</button>
+                {
+                    editing && (
+                        <button type="button" onClick={() => {
+                            setEditing(false); // 取消編輯修改模式
+                            setForm({id: null, name: '', price: '', amount: '', pub: false}); // 清空表單
+                        }}>取消</button>
+                    )
+                }
+                
             </form>
 
             <h2>📒 書籍列表</h2>
