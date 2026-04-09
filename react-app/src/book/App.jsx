@@ -29,14 +29,26 @@ function App() {
         fetchBooks();
     }, [])
 
+    // 當表單欄位被改變, 把最新的資料存回到 form 資料中
+    const handleChange = (e) => {
+        const {name, value, type, checked} = e.target;
+        console.log(name, value, type, checked)
+        
+        setForm((prev) => ({
+            ...prev,
+            [name]: name === 'pub' ? checked : value
+        }));
+        
+    }
+
     return (
         <>
             <h2>📚 書籍管理系統(使用 fetch)</h2>
             <form>
-                書名：<input type="text" name="name" value={form.name} required /><p />
-                價格：<input type="number" name="price" value={form.price} required /><p />
-                數量：<input type="number" name="amount" value={form.amount} required /><p />
-                出刊：<input type="checkbox" name="pub" checked={form.pub} /><p />
+                書名：<input type="text" name="name" value={form.name} onChange={handleChange} required /><p />
+                價格：<input type="number" name="price" value={form.price} onChange={handleChange} required /><p />
+                數量：<input type="number" name="amount" value={form.amount} onChange={handleChange} required /><p />
+                出刊：<input type="checkbox" name="pub" checked={form.pub}  onChange={handleChange} /><p />
                 <button type="submit">新增書籍</button>
             </form>
 
