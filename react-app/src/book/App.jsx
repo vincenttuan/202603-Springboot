@@ -7,6 +7,8 @@ const API_URL = 'http://localhost:8080/book'; // 後台 API
 function App() {
 
     const [books, setBooks] = useState([]); // 書籍列表資料
+    //const [form, setForm] = useState({id: null, name: 'demo', price: '10', amount: '20', pub: true}); // 表單內容
+    const [form, setForm] = useState({id: null, name: '', price: '', amount: '', pub: false}); // 表單內容
 
     // 讀取書籍資料
     const fetchBooks = async() => {
@@ -30,6 +32,13 @@ function App() {
     return (
         <>
             <h2>📚 書籍管理系統(使用 fetch)</h2>
+            <form>
+                書名：<input type="text" name="name" value={form.name} required /><p />
+                價格：<input type="number" name="price" value={form.price} required /><p />
+                數量：<input type="number" name="amount" value={form.amount} required /><p />
+                出刊：<input type="checkbox" name="pub" checked={form.pub} /><p />
+                <button type="submit">新增書籍</button>
+            </form>
 
             <h2>📒 書籍列表</h2>
             <table border={1} cellPadding={4}>
