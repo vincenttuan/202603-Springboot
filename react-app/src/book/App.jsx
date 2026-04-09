@@ -55,7 +55,7 @@ function App() {
             const result = await res.json();
             console.log(result);
             if(res.ok) {
-                await fetchBooks(); // 重新查詢所有書籍
+                fetchBooks(); // 重新查詢所有書籍
                 setForm({id: null, name: '', price: '', amount: '', pub: false}) // 清空表單
             } else {
                 alert(result.message || '操作失敗');
@@ -71,6 +71,26 @@ function App() {
     const handleEdit = (book) => {
         setForm(book); // 將 book 資料填入到表單中
         setEditing(true);
+    }
+
+    // 刪除功能
+    const handleDelete = async (book) => {
+        if(!window.confirm(`是否要刪除 ${book.name} 這本書?`)) return;
+
+        try {
+            const res = await fetch(`${API_URL}/${book.id}`, {
+                method: 'DELETE'
+            });
+            const result = await res.json();
+            if(res.ok) {
+                fetchBooks(); // 重新查詢所有書籍
+            } else {
+                alert(result.message || '刪除失敗');
+            }
+        } catch(e) {
+            console.error('刪除錯誤:', err);
+        }
+
     }
 
     return (
@@ -107,7 +127,7 @@ function App() {
                                 <td>{book.pub ? '是' : '否'}</td>
                                 <td>
                                     <button onClick={() => handleEdit(book)}>修改</button>
-                                    <button>刪除</button>
+                                    <button onClick={() => handleDelete(book)} >刪除</button>
                                 </td>
                             </tr>
                         ))
