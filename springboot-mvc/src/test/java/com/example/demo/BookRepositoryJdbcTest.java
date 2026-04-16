@@ -42,7 +42,7 @@ public class BookRepositoryJdbcTest {
 		System.out.println(check ? "新增成功" : "新增失敗");
 	}
 	
-	@Test
+	//@Test
 	void updateTest() {
 		// 先取得書籍
 		Optional<Book> optBook = bookRepository.getBookById(2);
@@ -59,6 +59,13 @@ public class BookRepositoryJdbcTest {
 		} else {
 			System.out.println("查無此書");
 		}
+	}
+	
+	@Test
+	void deleteTest() {
+		Integer id = 13;
+		boolean check = bookRepository.deleteBook(id);
+		System.out.println(check ? "刪除成功" : "刪除失敗");
 	}
 	
 }
