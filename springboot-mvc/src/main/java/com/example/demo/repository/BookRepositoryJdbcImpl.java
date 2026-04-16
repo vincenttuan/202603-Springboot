@@ -28,7 +28,7 @@ public class BookRepositoryJdbcImpl implements BookRepository {
 		String sql = "select id, name, price, amount, pub from book where id=?";
 		// 查單筆, 注意:若沒查到會拋出 EmptyResultDataAccessException
 		try {
-			Book book = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Book.class));
+			Book book = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Book.class), id);
 			return Optional.of(book);
 		} catch (EmptyResultDataAccessException e) {
 			return Optional.empty();
