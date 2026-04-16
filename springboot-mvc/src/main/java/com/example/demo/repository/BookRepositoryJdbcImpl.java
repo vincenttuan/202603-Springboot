@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -38,8 +39,12 @@ public class BookRepositoryJdbcImpl implements BookRepository {
 	@Override
 	public boolean addBook(Book book) {
 		String sql = "insert into book(name, price, amount, pub) values(?, ?, ?, ?)";
-		int rows = jdbcTemplate.update(sql, book.getName(), book.getPrice(), book.getAmount(), book.getPub());
-		return rows > 0;
+		try {
+			int rows = jdbcTemplate.update(sql, book.getName(), book.getPrice(), book.getAmount(), book.getPub());
+			return rows > 0;
+		} catch (DuplicateKeyException e) {
+			return false;
+		}
 	}
 
 	@Override
