@@ -31,15 +31,34 @@ public class BookRepositoryJdbcTest {
 			Book book = optBook.get();
 			System.out.println(book);
 		} else {
-			System.out.println("查無資料");
+			System.out.println("查無此書");
 		}
 	}
 	
-	@Test
+	//@Test
 	void addTest() {
 		Book book = new Book(0, "Java", 50.5, 120, true);
 		boolean check = bookRepository.addBook(book);
 		System.out.println(check ? "新增成功" : "新增失敗");
+	}
+	
+	@Test
+	void updateTest() {
+		// 先取得書籍
+		Optional<Book> optBook = bookRepository.getBookById(2);
+		if(optBook.isPresent()) {
+			Book book = optBook.get();
+			// 修改必要資料
+			book.setName("老夫子");
+			book.setAmount(33);
+			book.setPrice(22.2);
+			book.setPub(true);
+			// 進行修改
+			boolean check = bookRepository.updateBook(book.getId(), book);
+			System.out.println(check ? "修改成功" : "修改失敗");
+		} else {
+			System.out.println("查無此書");
+		}
 	}
 	
 }

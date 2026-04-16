@@ -49,8 +49,13 @@ public class BookRepositoryJdbcImpl implements BookRepository {
 
 	@Override
 	public boolean updateBook(Integer id, Book book) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "update book set name=?, price=?, amount=?, pub=? where id=?";
+		try {
+			int rows = jdbcTemplate.update(sql, book.getName(), book.getPrice(), book.getAmount(), book.getPub(), id);
+			return rows > 0;
+		} catch (DuplicateKeyException e) {
+			return false;
+		}
 	}
 
 	@Override
