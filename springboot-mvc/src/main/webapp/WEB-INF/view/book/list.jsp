@@ -7,7 +7,7 @@
 		<title>Book List</title>
 	</head>
 	<body>
-		
+		<%@ include file="menu.jsp" %>
 		<div>
 			<table border="1" id="bookTable">
 				<thead>
