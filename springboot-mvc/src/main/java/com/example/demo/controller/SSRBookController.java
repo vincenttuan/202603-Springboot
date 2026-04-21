@@ -32,6 +32,8 @@ public class SSRBookController {
 	public String addBook(Book book) {
 		bookService.addBook(book);
 		return "redirect:/ssr/book";
+		//return "redirect:http://localhost:8080/ssr/book";
+		//return "redirect:https://tw.yahoo.com";
 	}
 	
 }
