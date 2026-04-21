@@ -42,9 +42,9 @@ public class SSRBookController {
 		return "redirect:/ssr/book";
 		//return "redirect:http://localhost:8080/ssr/book";
 		//return "redirect:https://tw.yahoo.com";
-	}
+	}	
 	
-	@GetMapping("/edit/{id}")
+	@GetMapping("/edit/{id}")	
 	public String getEditPage(@PathVariable Integer id, Model model) {
 		Book book = bookService.getBookById(id);
 		model.addAttribute("book", book);
