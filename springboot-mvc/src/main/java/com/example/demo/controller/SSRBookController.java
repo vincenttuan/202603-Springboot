@@ -19,6 +19,7 @@ public class SSRBookController {
 	private BookService bookService;
 	
 	// 查詢所有書籍
+	// http://localhost:8080/ssr/book
 	@GetMapping
 	public String findAllBooks(Model model) {
 		List<Book> books = bookService.findAllBooks();
