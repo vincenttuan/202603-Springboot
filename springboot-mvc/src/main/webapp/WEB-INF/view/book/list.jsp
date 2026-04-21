@@ -32,7 +32,9 @@
 							<td>${ book.price }</td>
 							<td>${ book.amount }</td>
 							<td>${ book.pub }</td>
-							<td> </td>
+							<td>
+								<a href="/ssr/book/edit/${ book.id }">修改</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
