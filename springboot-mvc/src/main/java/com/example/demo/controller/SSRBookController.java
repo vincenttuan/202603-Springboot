@@ -28,5 +28,10 @@ public class SSRBookController {
 		return "book/list";  // 對應到 /WEB-INF/view/book/list.jsp
 	}
 	
-	//@PostMapping("/add")
+	@PostMapping("/add")
+	public String addBook(Book book) {
+		bookService.addBook(book);
+		return "redirect:/ssr/book";
+	}
+	
 }
