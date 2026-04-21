@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.exception.BookException;
 import com.example.demo.model.Book;
 import com.example.demo.service.BookService;
 
@@ -29,8 +30,14 @@ public class SSRBookController {
 	}
 	
 	@PostMapping("/add")
-	public String addBook(Book book) {
-		bookService.addBook(book);
+	public String addBook(Book book, Model model) {
+		try {
+			bookService.addBook(book);
+		} catch (BookException e) {
+			model.addAttribute("message", e.getMessage());
+			return "book/error";
+		}
+		
 		return "redirect:/ssr/book";
 		//return "redirect:http://localhost:8080/ssr/book";
 		//return "redirect:https://tw.yahoo.com";
