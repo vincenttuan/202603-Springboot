@@ -16,7 +16,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					
+					<c:forEach var="book" items="${ books }">
+						<tr>
+							<td>${ book.id }</td>
+							<td>${ book.name }</td>
+							<td>${ book.price }</td>
+							<td>${ book.amount }</td>
+							<td>${ book.pub }</td>
+							<td> </td>
+						</tr>
+					</c:forEach>
 				</tbody>
 				
 			</table>
