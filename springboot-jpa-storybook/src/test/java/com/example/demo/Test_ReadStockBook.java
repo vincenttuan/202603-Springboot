@@ -20,7 +20,9 @@ public class Test_ReadStockBook {
 	public void read() {
 		// 全部查詢
 		System.out.println("全部查詢:");
-		List<StoryBook> storyBooks = storyBookRepository.findAll();
+		//List<StoryBook> storyBooks = storyBookRepository.findAll();
+		//List<StoryBook> storyBooks = storyBookRepository.findAllByOrderByIdAsc();
+		List<StoryBook> storyBooks = storyBookRepository.findAllByOrderByIdDesc();
 		storyBooks.forEach(sb -> {
 			System.out.println(sb.getId() + " -> " + sb.getName());
 		});
