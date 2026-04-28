@@ -17,7 +17,9 @@ public class Test_ReadAuthor2 {
 	private AuthorRepository authorRepository;
 	
 	@Test
-	@Transactional
+	@Transactional // 因為 storyBooks 是 LAZY 延遲載入所以要加入
+				   // 若不想加入 @Transactional 則必須將 storyBooks 改 EAGER 及時加入
+	               // 請參考 Author.java 的 @OneToMany 的設定
 	public void read() {
 		// 顯示作者有出版幾本書 ?
 		List<Author> authors = authorRepository.findAll();

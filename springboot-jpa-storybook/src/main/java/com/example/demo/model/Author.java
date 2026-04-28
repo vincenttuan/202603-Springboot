@@ -26,7 +26,7 @@ public class Author {
 	@OneToOne(mappedBy = "author")
 	private Biography biography;
 	
-	@OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
-	//@OneToMany(mappedBy = "author")
+	//@OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "author")
 	private List<StoryBook> storyBooks;
 }
