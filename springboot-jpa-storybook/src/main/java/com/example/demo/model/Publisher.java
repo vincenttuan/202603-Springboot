@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,4 +32,11 @@ public class Publisher {
 	)
 	private List<StoryBook> storyBooks;
 	
+	// 自訂一個新增書籍的方法
+	public void addStoryBook(StoryBook storyBook) {
+		if(storyBooks == null) {
+			storyBooks = new CopyOnWriteArrayList<>();
+		}
+		storyBooks.add(storyBook);
+	}
 }
