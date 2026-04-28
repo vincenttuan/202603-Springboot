@@ -13,6 +13,6 @@ public interface PublisherRepository extends JpaRepository<Publisher, Integer> {
 	
 	@Modifying
 	@Query(value = "delete from publisher_storybook where publisher_id = :publisher_id and storybook_id = :storybook_id", nativeQuery = true)
-	void deleteBookFromPublisher(@Param("publisher_id") Integer publisherId, @Param("storybook_id") Integer storybookId);
+	void deleteStoryBookFromPublisher(@Param("publisher_id") Integer publisherId, @Param("storybook_id") Integer storybookId);
 	
 }
