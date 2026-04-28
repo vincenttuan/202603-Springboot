@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.Author;
 import com.example.demo.repository.AuthorRepository;
@@ -16,6 +17,7 @@ public class Test_ReadAuthor2 {
 	private AuthorRepository authorRepository;
 	
 	@Test
+	@Transactional
 	public void read() {
 		// 顯示作者有出版幾本書 ?
 		List<Author> authors = authorRepository.findAll();
@@ -23,6 +25,17 @@ public class Test_ReadAuthor2 {
 		
 		authors.forEach(au -> {
 			System.out.printf("作者: %s 書籍數量: %d%n", au.getName(), au.getStoryBooks().size());
+		});
+		
+	}
+	
+	@Test
+	public void read2() {
+		// 顯示作者名稱
+		List<Author> authors = authorRepository.findAll();
+		
+		authors.forEach(au -> {
+			System.out.printf("作者: %s%n", au.getName());
 		});
 		
 	}
