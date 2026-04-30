@@ -1,6 +1,9 @@
 package com.example.demo.proxy;
 
+import org.springframework.stereotype.Component;
+
 // 計算器實現
+@Component
 public class CalcImpl implements Calc {
 
 	@Override
