@@ -12,7 +12,7 @@ public class Test_DrinkShopRead {
 	public void read() {
 		/**
 		 * 題目:
-		 * 起查詢所有飲料商品並印出
+		 * 查詢所有飲料商品並印出
 		 * 
 		 * 1. 飲料名稱
 		 * 2. 飲料價格
