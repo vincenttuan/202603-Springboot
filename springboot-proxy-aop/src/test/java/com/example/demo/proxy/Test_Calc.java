@@ -9,6 +9,7 @@ public class Test_Calc {
 	
 	@Autowired
 	private Calc calc;
+	//private Calc calc = new CalcProxy(new CalcImpl());
 	
 	@Test
 	public void test() {
