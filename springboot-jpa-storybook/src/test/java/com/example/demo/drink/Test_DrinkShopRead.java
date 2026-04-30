@@ -45,9 +45,9 @@ public class Test_DrinkShopRead {
 			
 			// OneToOne: 查詢飲料詳細資料
 			DrinkDetail detail = drinkItem.getDrinkDetail();
-			System.out.printf("\t熱量: %d%n", detail.getCalories());
-			System.out.printf("\t甜度: %s%n", detail.getSugarSuggestion());
-			System.out.printf("\t冰塊: %s%n", detail.getIceSuggestion());
+			System.out.printf("熱量: %d%n", detail.getCalories());
+			System.out.printf("甜度: %s%n", detail.getSugarSuggestion());
+			System.out.printf("冰塊: %s%n", detail.getIceSuggestion());
 			
 			// ManyToMany: 查詢飲料加料
 			List<Topping> toppings = drinkItem.getToppings();
