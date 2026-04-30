@@ -2,7 +2,7 @@ package com.example.demo.proxy;
 
 import org.springframework.stereotype.Component;
 
-// 計算器實現
+// 計算器真正實現並交給 Spring 來管理
 @Component
 public class CalcImpl implements Calc {
 
