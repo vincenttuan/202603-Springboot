@@ -17,8 +17,10 @@ public class Test_Person {
 		// 使用代理模式
 		Person man = new PersonProxy(new Man());
 		Person woman = new PersonProxy(new Woman());
+		Person boy = new PersonProxy(new Boy());
 		
 		man.work();
 		woman.work();
+		boy.work();
 	}
 }
