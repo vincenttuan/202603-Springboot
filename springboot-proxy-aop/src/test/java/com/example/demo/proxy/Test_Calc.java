@@ -12,6 +12,7 @@ public class Test_Calc {
 	
 	@Test
 	public void test() {
+		calc = new CalcProxy(calc);
 		// 加法
 		System.out.println(calc.add(20, 10)); // 顯示: 30
 		System.out.println(calc.add(null, 10)); // 顯示: 參數不正確
