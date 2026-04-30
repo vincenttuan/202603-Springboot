@@ -39,9 +39,16 @@ public class CalcProxy implements Calc {
 		}
 		
 		// 調用業務邏輯
-		Integer result = calc.div(x, y);
+		try {
+			Integer result = calc.div(x, y);
+			return result;
+		} catch (Exception e) {
+			// 例外通知
+			System.out.println("執行時期發生錯誤, 原因:" + e.getMessage());
+		}
 		
-		return result;
+		return null;
+		
 	}
 	
 }

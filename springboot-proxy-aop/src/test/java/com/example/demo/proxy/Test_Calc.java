@@ -21,6 +21,8 @@ public class Test_Calc {
 		// 除法
 		System.out.println(calc.div(20, 10)); // 顯示: 2
 		System.out.println(calc.div(null, 10)); // 顯示: 參數不正確
+		System.out.println(calc.div(20, 0)); // 執行時期若會產生錯誤, CalcProxy 應如何處理 ?
+		
 		
 	}
 	
