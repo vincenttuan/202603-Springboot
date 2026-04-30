@@ -6,6 +6,9 @@ public class Boy implements Person {
 	public void work() {
 		// 業務邏輯
 		System.out.println("Boy 到學校上課");
+		
+		new RuntimeException("功課忘了帶...");
+		
 	}
 	
 	
