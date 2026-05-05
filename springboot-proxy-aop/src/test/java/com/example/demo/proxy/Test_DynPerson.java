@@ -14,11 +14,11 @@ public class Test_DynPerson {
 		man.work();
 		
 		DynProxy dynProxy2 = new DynProxy(new Woman());
-		Person woman = (Person)dynProxy.getProxy();
+		Person woman = (Person)dynProxy2.getProxy();
 		woman.work();
 		
 		DynProxy dynProxy3 = new DynProxy(new Boy());
-		Person boy = (Person)dynProxy.getProxy();
+		Person boy = (Person)dynProxy3.getProxy();
 		boy.work();
 	}
 	
