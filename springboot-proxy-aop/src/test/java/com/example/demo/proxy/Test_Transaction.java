@@ -9,7 +9,7 @@ public class Test_Transaction {
 	@Test
 	public void test() {
 		
-		AccountService proxy = (AccountService)new TransactionProxy(new AccountServiceImpl());
+		AccountService proxy = (AccountService)new TransactionProxy(new AccountServiceImpl()).getProxy();
 		
 		proxy.transfer("小明", "小華", 5000);
 		
