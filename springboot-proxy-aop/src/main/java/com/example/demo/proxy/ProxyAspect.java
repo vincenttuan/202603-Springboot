@@ -14,7 +14,7 @@ public class ProxyAspect {
 	
 	// 例外通知(Advice) 
 	public static void throwing(Exception e) {
-		System.out.println("例外通知:" + e);
+		System.out.println("例外通知:" + e.getCause());
 	}
 	
 	// 後置通知(Advice) 

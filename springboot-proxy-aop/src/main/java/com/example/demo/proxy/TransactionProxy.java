@@ -28,7 +28,7 @@ public class TransactionProxy {
 				
 			} catch (Exception e) {
 				TransactionAspect.rollback();
-				System.out.println("錯誤原因:" + e.getCause());
+				System.out.println("錯誤原因:" + e.getCause().getMessage());
 			} finally {
 				TransactionAspect.close();
 			}
