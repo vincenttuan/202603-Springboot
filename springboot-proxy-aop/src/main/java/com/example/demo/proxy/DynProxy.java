@@ -3,6 +3,7 @@ package com.example.demo.proxy;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.Arrays;
 
 // 動態代理
 // 可以代理任何物件
@@ -28,9 +29,19 @@ public class DynProxy {
 		// 3. InvocationHandler handler => 處理代理的實現
 		InvocationHandler handler = (Object proxy, Method method, Object[] args) -> {
 			Object result = null;
+			// 前置通知
+			System.out.println("前置通知: 方法:" + method.getName() + " 參數:" + Arrays.toString(args));
 			
-			// 執行業務方法
-			result = method.invoke(object, args);
+			try {
+				// 執行業務方法
+				result = method.invoke(object, args);
+			} catch (Exception e) {
+				// 例外通知
+				System.out.println("例外通知:" + e);
+			} finally {
+				// 後置通知
+				System.out.println("後置通知");
+			}
 			
 			return result;
 		};
