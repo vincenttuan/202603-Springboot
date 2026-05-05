@@ -18,7 +18,7 @@ public class CalcLoggerAspect {
 	
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
-	// 建立一個切入點邏輯方法
+	// 建立一個切入點邏輯方法(切入點表達式)
 	@Pointcut(value = "execution(public Integer com.example.demo.proxy.CalcImpl.add(Integer, Integer))")
 	public void ptAdd() {}
 	
