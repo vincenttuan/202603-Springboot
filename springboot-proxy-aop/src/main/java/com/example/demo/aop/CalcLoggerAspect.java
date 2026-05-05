@@ -7,6 +7,7 @@ import java.util.Date;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -63,5 +64,16 @@ public class CalcLoggerAspect {
 		// Log 紀錄
 		System.out.printf("Log 正常返回通知[%s]: %s %s 正常返回結果: %s %n", dateTime, methodName, Arrays.toString(args), result);
 	}
+	
+	// 異常返回通知
+	@AfterThrowing(value = "ptDiv()", throwing = "ex")
+	public void afterThrowing(JoinPoint joinPoint, Throwable ex) {
+		String methodName = joinPoint.getSignature().getName(); // 取得方法名稱
+		Object[] args = joinPoint.getArgs();
+		String dateTime = sdf.format(new Date());
+		// Log 紀錄
+		System.out.printf("Log 異常返回通知[%s]: %s %s 異常結果: %s %n", dateTime, methodName, Arrays.toString(args), ex);
+	}
+	
 	
 }
