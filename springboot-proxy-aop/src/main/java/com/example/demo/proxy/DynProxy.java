@@ -30,17 +30,19 @@ public class DynProxy {
 		InvocationHandler handler = (Object proxy, Method method, Object[] args) -> {
 			Object result = null;
 			// 前置通知
-			System.out.println("前置通知: 方法:" + method.getName() + " 參數:" + Arrays.toString(args));
+			ProxyAspect.before(method, args);
 			
 			try {
 				// 執行業務方法
 				result = method.invoke(object, args);
 			} catch (Exception e) {
 				// 例外通知
-				System.out.println("例外通知:" + e);
+				ProxyAspect.throwing(e);
+				
 			} finally {
 				// 後置通知
-				System.out.println("後置通知");
+				ProxyAspect.end();
+				
 			}
 			
 			return result;
