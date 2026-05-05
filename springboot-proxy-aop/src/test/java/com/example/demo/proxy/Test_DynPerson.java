@@ -13,6 +13,13 @@ public class Test_DynPerson {
 		Person man = (Person)dynProxy.getProxy(); // 取得代理物件
 		man.work();
 		
+		DynProxy dynProxy2 = new DynProxy(new Woman());
+		Person woman = (Person)dynProxy.getProxy();
+		woman.work();
+		
+		DynProxy dynProxy3 = new DynProxy(new Boy());
+		Person boy = (Person)dynProxy.getProxy();
+		boy.work();
 	}
 	
 }
