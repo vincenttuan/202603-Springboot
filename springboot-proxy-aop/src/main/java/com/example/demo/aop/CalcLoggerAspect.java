@@ -28,6 +28,9 @@ public class CalcLoggerAspect {
 	@Pointcut(value = "execution(public Integer com.example.demo.proxy.CalcImpl.div(Integer, Integer))")
 	public void ptDiv() {}
 	
+	@Pointcut(value = "execution(public Integer com.example.demo.proxy.CalcImpl.*(Integer, Integer))")
+	public void ptAddOrDiv() {}
+	
 	// 前置通知(Advice)
 	//@Before(value = "execution(public Integer com.example.demo.proxy.CalcImpl.add(Integer, Integer))")
 	//@Before(value = "execution(public Integer com.example.demo.proxy.CalcImpl.div(Integer, Integer))")
