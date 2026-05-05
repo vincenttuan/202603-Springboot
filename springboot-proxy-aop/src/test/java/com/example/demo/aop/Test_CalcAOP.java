@@ -17,8 +17,12 @@ public class Test_CalcAOP {
 		Integer result1 = calc.add(20, 10);
 		System.out.println("加法結果: " + result1);
 		
+		System.out.println("----------------------------------------------");
+		
 		Integer result2 = calc.div(20, 10);
 		System.out.println("除法結果: " + result2);
+		
+		System.out.println("----------------------------------------------");
 		
 		Integer result3 = calc.div(20, 0);
 		System.out.println("除法結果: " + result3);
