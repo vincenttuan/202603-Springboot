@@ -1,6 +1,7 @@
 package com.example.demo.proxy;
 
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 // 動態代理
@@ -25,7 +26,14 @@ public class DynProxy {
 		Class<?>[] interfaces = object.getClass().getInterfaces();
 		
 		// 3. InvocationHandler handler => 處理代理的實現
-		InvocationHandler handler = null;
+		InvocationHandler handler = (Object proxy, Method method, Object[] args) -> {
+			Object result = null;
+			
+			// 執行業務方法
+			result = method.invoke(object, args);
+			
+			return result;
+		};
 		
 		// 4. 建立代理實體
 		proxyObj = Proxy.newProxyInstance(loader, interfaces, handler);
