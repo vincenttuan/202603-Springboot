@@ -6,6 +6,7 @@ import java.util.Date;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -53,5 +54,14 @@ public class CalcLoggerAspect {
 		System.out.printf("Log 後置通知[%s]: %s %s %n", dateTime, methodName, Arrays.toString(args));
 	}
 	
+	// 正常返回通知
+	@AfterReturning(value = "ptDiv()", returning = "result")
+	public void afterReturning(JoinPoint joinPoint, Object result) {
+		String methodName = joinPoint.getSignature().getName(); // 取得方法名稱
+		Object[] args = joinPoint.getArgs();
+		String dateTime = sdf.format(new Date());
+		// Log 紀錄
+		System.out.printf("Log 正常返回通知[%s]: %s %s 正常返回結果: %s %n", dateTime, methodName, Arrays.toString(args), result);
+	}
 	
 }
