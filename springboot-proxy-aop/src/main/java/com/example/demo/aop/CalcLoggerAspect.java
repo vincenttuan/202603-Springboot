@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -41,4 +42,16 @@ public class CalcLoggerAspect {
 		// Log 紀錄
 		System.out.printf("Log 前置通知[%s]: %s %s %n", dateTime, methodName, Arrays.toString(args));
 	}
+	
+	// 後置通知: 不論是否會發生例外都會執行
+	@After(value = "ptDiv()")
+	public void end(JoinPoint joinPoint) {
+		String methodName = joinPoint.getSignature().getName(); // 取得方法名稱
+		Object[] args = joinPoint.getArgs();
+		String dateTime = sdf.format(new Date());
+		// Log 紀錄
+		System.out.printf("Log 後置通知[%s]: %s %s %n", dateTime, methodName, Arrays.toString(args));
+	}
+	
+	
 }
