@@ -33,7 +33,7 @@ public class CalcLoggerAspect {
 	//@Before(value = "execution(public * com.example.demo.proxy.*.*(..))") // .. 表示任意參數的組合
 	//@Before(value = "execution(public * *(..))") // 全域攔截
 	//@Before(value = "ptAdd()")
-	@Before(value = "ptAdd() || ptDiv()") // 支援邏輯運算子: &&, ||, !
+	@Before(value = "ptAdd() || ptDiv()") // 切入點表達式支援邏輯運算子: &&, ||, !
 	public void before(JoinPoint joinPoint) {
 		String methodName = joinPoint.getSignature().getName(); // 取得方法名稱
 		Object[] args = joinPoint.getArgs();
