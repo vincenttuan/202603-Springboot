@@ -18,7 +18,7 @@ public class CalcLoggerAspect {
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	// 前置通知(Advice)
-	@Before(value = "execution(public Integer com.example.demo.proxy.CalcImpl.add(Integer, Integer)")
+	@Before(value = "execution(public Integer com.example.demo.proxy.CalcImpl.add(Integer, Integer))")
 	public void before(JoinPoint joinPoint) {
 		String methodName = joinPoint.getSignature().getName(); // 取得方法名稱
 		Object[] args = joinPoint.getArgs();
