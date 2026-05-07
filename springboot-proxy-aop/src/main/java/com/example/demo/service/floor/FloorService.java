@@ -7,5 +7,5 @@ package com.example.demo.service.floor;
  * 3. 未授權進入的用戶, AOP 會攔截與拒絕
  * */
 public interface FloorService {
-	String ebterFloor(String username, int floor);
+	String enterFloor(String username, int floor);
 }
