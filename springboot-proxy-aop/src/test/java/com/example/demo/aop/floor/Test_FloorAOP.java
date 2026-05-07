@@ -14,8 +14,8 @@ public class Test_FloorAOP {
 	
 	@Test
 	public void test() {
-		String username = "alice";
-		int floor = 2;
+		String username = "john";
+		int floor = 1;
 		
 		try {
 			String result = floorService.enterFloor(username, floor);

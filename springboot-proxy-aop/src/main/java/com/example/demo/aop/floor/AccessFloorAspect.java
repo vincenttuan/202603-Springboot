@@ -28,6 +28,9 @@ public class AccessFloorAspect {
 		String username = (String)args[0];
 		int floor = (int)args[1];
 		
+		// username 空白或是人名不存在統一使用 guest
+		if(username.isBlank() || !accessController.exist(username)) username = "guest";
+		
 		if(accessController.hasAccess(username, floor)) {
 			System.out.printf("[AOP] %s 授權進入 %d 樓%n", username, floor);
 			result = joinPoint.proceed();
