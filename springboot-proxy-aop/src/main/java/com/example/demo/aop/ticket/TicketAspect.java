@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
  * 3.出發站與到達站不可相同
  * 4.張數必須介於1~6張
  * 5.上述都檢查通過才可以訂票
+ * 
+ * 例外拋出可以使用 IllegalArgumentException
  * */
 
 @Component
