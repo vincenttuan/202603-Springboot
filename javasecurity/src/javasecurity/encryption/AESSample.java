@@ -28,14 +28,21 @@ public class AESSample {
 		// 1. 建立 AES 密鑰規範
 		SecretKey aesKeySpec = new SecretKeySpec(KEY.getBytes(), "AES"); // 金鑰
 		
-		// 2. 選擇 ECB 模式進行對明文的加密(透過金鑰加密)
+		// 2. 加密 - 選擇 ECB 模式進行對明文的加密(透過金鑰加密)
 		byte[] encryptedECB = KeyUtil.encryptWithAESKey(aesKeySpec, originalText);
 		System.out.printf("加密後: %s%n", Arrays.toString(encryptedECB));
 		
-		// 3. 透過 Base64 編碼以利傳輸
+		// 3. 編碼 - 透過 Base64 編碼以利傳輸
 		String encoderECBBase64 = Base64.getEncoder().encodeToString(encryptedECB);
 		System.out.printf("編碼後: %s%n", encoderECBBase64);
 		System.out.println("------------------------------");
 		
+		// 4. 解碼
+		byte[] decoderECBBase64 = Base64.getDecoder().decode(encoderECBBase64);
+		System.out.printf("解碼後: %s%n", Arrays.toString(decoderECBBase64));
+		
+		// 5. 解密 (要與當時加密時使用同一個金鑰)
+		String decyptedECB = KeyUtil.decryptWithAESKey(aesKeySpec, decoderECBBase64);
+		System.out.printf("解密後: %s%n", decyptedECB);
 	}
 }
