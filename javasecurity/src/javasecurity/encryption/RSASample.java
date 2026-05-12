@@ -28,10 +28,18 @@ public class RSASample {
 		System.out.printf("2. 加密後: %s%n", Arrays.toString(encryptedBytes));
 		
 		// 3. 編碼 - 透過 Base64 編碼以利傳輸
-		String encoderECBBase64 = Base64.getEncoder().encodeToString(encryptedBytes);
-		System.out.printf("3. 編碼後: %s%n", encoderECBBase64);
+		String encoderRSABase64 = Base64.getEncoder().encodeToString(encryptedBytes);
+		System.out.printf("3. 編碼後: %s%n", encoderRSABase64);
 		System.out.println("------------------------------");
 		
+		// 4. 解碼
+		byte[] decoderRSABase64 = Base64.getDecoder().decode(encoderRSABase64);
+		System.out.printf("4. 解碼後: %s%n", Arrays.toString(decoderRSABase64));
+		
+		// 5. 解密 - 利用私鑰解密
+		byte[] decyptedRSA = KeyUtil.decryptWithPrivateKey(privateKey, decoderRSABase64);
+		String message = new String(decyptedRSA); // byte[] -> String
+		System.out.printf("5. 解密後: %s%n", message);
 	}
 
 }
