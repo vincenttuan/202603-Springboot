@@ -15,6 +15,9 @@ public class AESSample {
 	private static final String KEY = "012345678901234567890123456789AB"; // 32 個字
 	
 	public static void main(String[] args) throws Exception {
+		System.out.println("AES(ECB)");
+		System.out.println("==============================");
+		
 		String originalText = "明早7:30要招開人事緊急會議";
 		System.out.printf("原始明文: %s%n", originalText);
 		System.out.println("------------------------------");
