@@ -46,6 +46,12 @@ public class ConsoleLoginHash {
 	
 	// 註冊帳號
 	private static void register(String username, String password) throws Exception {
+		// 檢查名稱是否重複
+		if(users.containsKey(username)) {
+			System.err.printf("註冊失敗: %s 帳號已經存在%n", username);
+			return;
+		}
+		
 		String salt = generateSalt();
 		String hash = hash(password, salt);
 		// 建立使用者
@@ -75,6 +81,7 @@ public class ConsoleLoginHash {
 	public static void main(String[] args) throws Exception {
 		// 模擬註冊帳號
 		register("admin", "1234");
+		register("admin", "9999"); // 註冊失敗(帳號已存在)
 		register("john" , "1234");
 		register("mary" , "5678");
 		register("jo"   , "5678");
