@@ -52,10 +52,27 @@ public class ConsoleLoginHash {
 		users.put(username, new User(salt, hash));
 	}
 	
+	// 登入檢查
+	private static boolean login(String username, String password) throws Exception {
+		User user = users.get(username);
+		
+		// 帳號若不存在
+		if(user == null) {
+			System.err.println("帳號不存在");
+			return false;
+		}
+		
+		// 使用輸入的密碼 + 原本的 salt 重新雜湊
+		String inputHash = hash(password, user.salt);
+		
+		// 比對雜湊值
+		return inputHash.equals(user.hash);
+	}
+	
 	// 模擬資料庫
 	private static Map<String, User> users = new HashMap<>();
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
 	}
