@@ -1,7 +1,6 @@
 package javasecurity.hash;
 
 import java.security.MessageDigest;
-import java.util.Base64;
 
 // Hash 雜湊
 public class SimpleHash {
