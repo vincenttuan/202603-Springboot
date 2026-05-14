@@ -73,8 +73,24 @@ public class ConsoleLoginHash {
 	private static Map<String, User> users = new HashMap<>();
 	
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-
+		// 模擬註冊帳號
+		register("admin", "1234");
+		register("john" , "1234");
+		register("mary" , "5678");
+		register("jo"   , "5678");
+		
+		// 查看資料庫內容
+		users.forEach((username, user) -> {
+			System.out.printf("%-5s Salt: %s Hash: %s%n", username, user.salt, user.hash);
+		});
+		
+		System.out.println("\n=== 測試登入 ===");
+		
+		System.out.printf("admin / 1234 : %b%n", login("admin", "1234"));
+		System.out.printf("admin / 9999 : %b%n", login("admin", "9999"));
+		System.out.printf("mary  / 5678 : %b%n", login("mary", "5678"));
+		System.out.printf("tom   / 1234 : %b%n", login("tom", "1234"));
+		
 	}
 
 }
