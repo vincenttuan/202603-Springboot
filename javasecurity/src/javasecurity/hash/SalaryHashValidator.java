@@ -33,10 +33,11 @@ public class SalaryHashValidator {
 		System.out.println(newSalaryHash);
 		
 		// 比對原始 hash 與目前 hash
+		System.out.println("\n=== 驗證結果 ===");
 		if(salaryHash.equals(newSalaryHash)) {
-			System.out.println("驗證結果: 資料正確, 檔案未被竄改.");
+			System.out.println("資料正確, 檔案未被竄改.");
 		} else {
-			System.err.println("驗證結果: 資料異常, 檔案可能已被竄改.");
+			System.err.println("資料異常, 檔案可能已被竄改.");
 		}
 		
 	}
