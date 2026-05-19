@@ -1,5 +1,11 @@
 package javasecurity.mac;
 
+import java.io.File;
+
+import javax.crypto.SecretKey;
+
+import javasecurity.util.KeyUtil;
+
 /*
  * 情境描述：
  * 在一家大型企業，HR部門每月都會發送電子薪資明細給員工。
@@ -10,8 +16,23 @@ package javasecurity.mac;
  * */
 public class SalaryProtectionCreator {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) throws Exception {
+		String filePath = "src/mac/my_salary.txt";
+		String keyPath = "src/mac/mackey.key";
+		
+		// 生成 mackey.key
+		SecretKey macKey = null;
+		if(new File(keyPath).exists()) {
+			macKey = KeyUtil.getSecretKeyFromFile("HmacSHA256", keyPath);
+		} else {
+			macKey = KeyUtil.generateKeyForHmac();
+			// 儲存
+			KeyUtil.saveSecretKeyToFile(macKey, keyPath);
+		}
+		
+		// 得到 macValue
+		String macHexValue = KeyUtil.generateMac("HmacSHA256", macKey, filePath);
+		System.out.printf("HR 發佈的 macHexValue: %s%n", macHexValue);
 
 	}
 
