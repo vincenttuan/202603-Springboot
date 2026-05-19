@@ -17,8 +17,8 @@ import javasecurity.util.KeyUtil;
 public class SalaryProtectionCreator {
 
 	public static void main(String[] args) throws Exception {
-		String filePath = "src/mac/my_salary.txt";
-		String keyPath = "src/mac/mackey.key";
+		String filePath = "src/javasecurity/mac/my_salary.txt";
+		String keyPath = "src/javasecurity/mac/mackey.key";
 		
 		// 生成 mackey.key
 		SecretKey macKey = null;
