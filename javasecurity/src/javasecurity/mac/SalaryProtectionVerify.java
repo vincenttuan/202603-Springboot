@@ -32,7 +32,7 @@ public class SalaryProtectionVerify {
 		
 		// 驗證 HR 所發佈的 macHexValueFromHR 是否等於 自行算出 computedMacHexValue
 		if(macHexValueFromHR.equals(computedMacHexValue)) {
-			System.out.println("驗證成功, 資料室來自於 HR");
+			System.out.println("驗證成功, 資料是來自於 HR");
 			// 讀取檔案內容
 			System.out.println(Files.readString(Paths.get(filePath)));
 		} else {
