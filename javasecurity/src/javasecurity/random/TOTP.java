@@ -31,7 +31,9 @@ public class TOTP {
 		// 金鑰(以登入者的名稱當作金鑰)
 		String secret = Base64.getEncoder().encodeToString(username.getBytes());
 		// 每秒 3 秒換一次
-		long timeInterval = System.currentTimeMillis() / 3000L;
+		//long timeInterval = System.currentTimeMillis() / (3 * 1000L);
+		// 每秒 10 秒換一次
+		long timeInterval = System.currentTimeMillis() / (10 * 1000L);
 		// 得到 TOPT 密碼(使用演算法: HMACSHA256)
 		String totp = KeyUtil.generateTOTP(secret, timeInterval, "HMACSHA256");
 		return totp;
