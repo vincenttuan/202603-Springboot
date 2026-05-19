@@ -1,5 +1,11 @@
 package javasecurity.sign;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.PublicKey;
+
+import javasecurity.util.KeyUtil;
+
 /*
  * 情境說明：
  * 延續「DigitalSignatureCreator」的情境，小王的合作夥伴，小李，收到了小王用數位簽章簽署的「my_contract.txt」文件。
@@ -12,8 +18,27 @@ package javasecurity.sign;
 public class DigitalSignatureVerify {
 
 	public static void main(String[] args) throws Exception {
+		// 小李
+		// 小王的合約檔位置
+		String contractPath = "src/javasecurity/sign/my_contract.txt";
+		// 小王的公鑰檔位置
+		String publicKeyPath = "src/javasecurity/sign/publicKey.key";
+		// 小王的數位簽章檔位置
+		String signaturePath = "src/javasecurity/sign/signature.sig";
 		
-
+		PublicKey publicKey = KeyUtil.getPublicKeyFromFile("RSA", publicKeyPath);
+		byte[] savedSignature = KeyUtil.getSignatureFromFile(signaturePath);
+		
+		// 驗證合約是否是小王所簽屬的
+		boolean isValid = KeyUtil.verifySignatureFromFile(publicKey, contractPath, savedSignature);
+		
+		if(isValid) {
+			System.out.println("數位簽章驗證成功!");
+			System.out.println(Files.readString(Paths.get(contractPath)));
+		} else {
+			System.err.println("數位簽章驗證失敗!");
+		}
+		
 	}
 
 }
