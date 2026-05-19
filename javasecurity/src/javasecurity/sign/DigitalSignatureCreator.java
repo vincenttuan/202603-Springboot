@@ -1,5 +1,13 @@
 package javasecurity.sign;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.KeyPair;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+
+import javasecurity.util.KeyUtil;
+
 /*
  * 情境說明：
  * 小王是一家公司的經理，為了提高工作效率和保證文件的安全性，他決定使用數位簽章技術對公司的合同進行簽署。
@@ -13,9 +21,39 @@ package javasecurity.sign;
  */
 public class DigitalSignatureCreator {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public static void main(String[] args) throws Exception {
+		// 小王
+		// 合約檔位置
+		String contractPath = "src/javasecurity/sign/my_contract.txt";
+		// 公鑰檔位置
+		String publicKeyPath = "src/javasecurity/sign/publicKey.txt";
+		// 私鑰檔位置
+		String privateKeyPath = "src/javasecurity/sign/privateKey.txt";
+		// 數位簽章檔位置
+		String signaturePath = "src/javasecurity/sign/signature.sig";
+		
+		// 公鑰/私鑰
+		PublicKey publicKey;
+		PrivateKey privateKey;
+		
+		// 取得公私鑰/建立公私鑰(第一次)
+		if(Files.exists(Paths.get(publicKeyPath)) && Files.exists(Paths.get(privateKeyPath))) {
+			// 取得公私鑰
+			publicKey  = KeyUtil.getPublicKeyFromFile("RSA", publicKeyPath);
+			privateKey = KeyUtil.getPrivateKeyFromFile("RSA", privateKeyPath);
+		} else {
+			// 建立公私鑰(第一次)
+			KeyPair keyPair = KeyUtil.generateRSAKeyPair();
+			publicKey = keyPair.getPublic();
+			privateKey = keyPair.getPrivate();
+			// 保存公私鑰檔案
+			KeyUtil.saveKeyToFile(publicKey, publicKeyPath);
+			KeyUtil.saveKeyToFile(privateKey, privateKeyPath);
+		}
+		
+		
+		
+		
 	}
 
 }
