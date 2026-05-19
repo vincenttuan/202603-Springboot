@@ -26,9 +26,9 @@ public class DigitalSignatureCreator {
 		// 合約檔位置
 		String contractPath = "src/javasecurity/sign/my_contract.txt";
 		// 公鑰檔位置
-		String publicKeyPath = "src/javasecurity/sign/publicKey.txt";
+		String publicKeyPath = "src/javasecurity/sign/publicKey.key";
 		// 私鑰檔位置
-		String privateKeyPath = "src/javasecurity/sign/privateKey.txt";
+		String privateKeyPath = "src/javasecurity/sign/privateKey.key";
 		// 數位簽章檔位置
 		String signaturePath = "src/javasecurity/sign/signature.sig";
 		
