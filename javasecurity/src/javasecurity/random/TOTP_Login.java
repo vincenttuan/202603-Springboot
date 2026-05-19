@@ -21,7 +21,7 @@ public class TOTP_Login {
 			return;
 		}
 		
-		System.out.printf("驗證碼: %s%n", generateTOTP(password));
+		System.out.printf("手機看到的驗證碼: %s%n", generateTOTP(password));
 		
 		System.out.print("請輸入驗證碼:");
 		if(generateTOTP(password).equals(scanner.next())) {
