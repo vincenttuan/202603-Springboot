@@ -22,6 +22,7 @@ public class TOTP {
 		
 		for(int i=1;;i++) {
 			System.out.printf("%4d : TOTP = %s%n", i, generateTOTP("admin"));
+			Thread.sleep(1000);
 		}
 
 	}
