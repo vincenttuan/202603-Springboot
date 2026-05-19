@@ -24,7 +24,8 @@ public class TOTP_Login {
 		System.out.printf("手機看到的驗證碼: %s%n", generateTOTP(password));
 		
 		System.out.print("請輸入驗證碼:");
-		if(generateTOTP(password).equals(scanner.next())) {
+		String code = scanner.next();
+		if(generateTOTP(password).equals(code)) {
 			System.out.println("驗證碼輸入成功, 登入成功 !");
 		} else {
 			System.out.println("驗證碼輸入失敗, 登入失敗 !");
