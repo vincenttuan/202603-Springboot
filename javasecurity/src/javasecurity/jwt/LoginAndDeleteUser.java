@@ -1,5 +1,7 @@
 package javasecurity.jwt;
 
+import java.util.List;
+
 import com.nimbusds.jwt.JWTClaimsSet;
 
 import javasecurity.util.KeyUtil;
@@ -39,6 +41,10 @@ public class LoginAndDeleteUser {
 		// 3. 模擬呼叫刪除會員 API
 		deleteUserApi(token, signingSecret);
 		
+		System.out.println();
+		// 4. 模擬呼叫刪除會員 API
+		addUserApi(token, signingSecret);
+				
 	}
 	
 	// 刪除會員 API
@@ -57,17 +63,47 @@ public class LoginAndDeleteUser {
 		JWTClaimsSet claims = KeyUtil.getClaimsFromToken(token);
 		String subject = claims.getSubject();
 		String role = claims.getStringClaim("role");
-		String permission = claims.getStringClaim("permission");
+		List<String> permissions = claims.getStringListClaim("permissions");
 		
 		System.out.printf("使用者: %s%n", subject);
 		System.out.printf("角色: %s%n", role);
-		System.out.printf("權限: %s%n", permission);
+		System.out.printf("權限: %s%n", permissions);
 		
 		// 檢查權限是否足夠
-		if("USER_DELETE".equals(permission)) {
+		if(permissions.contains("USER_DELETE")) {
 			System.out.println("授權成功: 可以刪除會員");
 		} else {
 			System.err.println("授權失敗: 權限不足, 不可刪除會員");
+		}
+	}
+	
+	// 新增會員 API
+	public static void addUserApi(String token, String signingSecret) throws Exception {
+		System.out.println("呼叫 API: 新增會員");
+		System.out.println("需要權限: USER_ADD");
+		
+		// 驗證 JWT 並取得 payload
+		boolean check = KeyUtil.verifyJWTSignature(token, signingSecret);
+		if(!check) {
+			System.err.println("JWT 驗證失敗");
+			return;
+		}
+		System.out.println("JWT 驗證成功");
+		
+		JWTClaimsSet claims = KeyUtil.getClaimsFromToken(token);
+		String subject = claims.getSubject();
+		String role = claims.getStringClaim("role");
+		List<String> permissions = claims.getStringListClaim("permissions");
+		
+		System.out.printf("使用者: %s%n", subject);
+		System.out.printf("角色: %s%n", role);
+		System.out.printf("權限: %s%n", permissions);
+		
+		// 檢查權限是否足夠
+		if(permissions.contains("USER_ADD")) {
+			System.out.println("授權成功: 可以新增會員");
+		} else {
+			System.err.println("授權失敗: 權限不足, 不可新增會員");
 		}
 	}
 	
@@ -82,7 +118,8 @@ public class LoginAndDeleteUser {
 				.subject(username)
 				.issuer("https://my-system.com")
 				.claim("role", "ADMIN")
-				.claim("permission", "USER_DELETE")
+				//.claim("permission", "USER_DELETE")
+				.claim("permissions", List.of("USER_DELETE", "USER_ADD"))
 				.build();
 		
 		return KeyUtil.signJWT(claimsSet, signingSecret);
