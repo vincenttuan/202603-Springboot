@@ -662,7 +662,8 @@ public class KeyUtil {
         // 檢查簽名
         JWSVerifier verifier = new MACVerifier(secret);
         if (!signedJWT.verify(verifier)) {
-            return false;
+            //return false;
+        	throw new Exception("Token 簽名錯誤");
         }
 
         // 檢查過期時間
