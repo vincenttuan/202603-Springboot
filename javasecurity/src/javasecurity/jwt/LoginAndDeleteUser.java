@@ -45,7 +45,18 @@ public class LoginAndDeleteUser {
 		System.out.println();
 		// 4. 模擬呼叫刪除會員 API
 		addUserApi(token, signingSecret);
-				
+		
+		// 模擬 10 秒延遲
+		for(int i=1;i<=10;i++) {
+			Thread.sleep(1000);
+			System.out.print(i + " ");
+		}
+		System.out.println();
+		
+		// 重新調用 API
+		deleteUserApi(token, signingSecret);
+		System.out.println();
+		addUserApi(token, signingSecret);
 	}
 	
 	// 刪除會員 API
