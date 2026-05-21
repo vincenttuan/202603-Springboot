@@ -66,11 +66,12 @@ public class LoginAndDeleteUser {
 		System.out.println("需要權限: USER_DELETE");
 		
 		// 驗證 JWT 並取得 payload
-		boolean check = false;
+		boolean check = true;
 		try {
 			KeyUtil.verifyJWTSignature(token, signingSecret);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
+			check = false;
 		}
 		
 		if(!check) {
@@ -102,11 +103,12 @@ public class LoginAndDeleteUser {
 		System.out.println("需要權限: USER_ADD");
 		
 		// 驗證 JWT 並取得 payload
-		boolean check = false;
+		boolean check = true;
 		try {
 			KeyUtil.verifyJWTSignature(token, signingSecret);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
+			check = false;
 		}
 				
 		if(!check) {
