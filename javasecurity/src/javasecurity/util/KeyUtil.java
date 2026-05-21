@@ -656,26 +656,24 @@ public class KeyUtil {
      * @throws JOSEException  如果驗證過程中發生錯誤。
      */
     public static boolean verifyJWTSignature(String token, String secret) throws Exception {
-        try {
-            SignedJWT signedJWT = SignedJWT.parse(token);
+        
+        SignedJWT signedJWT = SignedJWT.parse(token);
 
-            // 檢查簽名
-            JWSVerifier verifier = new MACVerifier(secret);
-            if (!signedJWT.verify(verifier)) {
-                return false;
-            }
-
-            // 檢查過期時間
-            Date expirationTime = signedJWT.getJWTClaimsSet().getExpirationTime();
-            if (expirationTime != null && new Date().after(expirationTime)) {
-                //return false; // Token 已經過期
-            	throw new Exception("Token 已經過期");
-            }
-
-            return true;
-        } catch (Exception e) {
+        // 檢查簽名
+        JWSVerifier verifier = new MACVerifier(secret);
+        if (!signedJWT.verify(verifier)) {
             return false;
         }
+
+        // 檢查過期時間
+        Date expirationTime = signedJWT.getJWTClaimsSet().getExpirationTime();
+        if (expirationTime != null && new Date().after(expirationTime)) {
+            //return false; // Token 已經過期
+        	throw new Exception("Token 已經過期");
+        }
+
+        return true;
+        
     }
 
     /**
