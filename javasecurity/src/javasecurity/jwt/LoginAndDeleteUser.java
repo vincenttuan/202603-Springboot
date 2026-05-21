@@ -1,5 +1,6 @@
 package javasecurity.jwt;
 
+import java.util.Date;
 import java.util.List;
 
 import com.nimbusds.jwt.JWTClaimsSet;
@@ -113,10 +114,17 @@ public class LoginAndDeleteUser {
 			return null;
 		}
 		
+		// 設定有效時間
+		Date now = new Date();
+		// JWT 10 秒後過期
+		Date expireTime = new Date(now.getTime() + (10 * 1000L));
+		
 		// 建立 JWT payload
 		JWTClaimsSet claimsSet = new JWTClaimsSet.Builder()
 				.subject(username)
 				.issuer("https://my-system.com")
+				.issueTime(now) // 發行時間
+				.expirationTime(expireTime) // 過期時間
 				.claim("role", "ADMIN")
 				//.claim("permission", "USER_DELETE")
 				.claim("permissions", List.of("USER_DELETE", "USER_ADD"))
