@@ -668,7 +668,8 @@ public class KeyUtil {
             // 檢查過期時間
             Date expirationTime = signedJWT.getJWTClaimsSet().getExpirationTime();
             if (expirationTime != null && new Date().after(expirationTime)) {
-                return false; // Token 已經過期
+                //return false; // Token 已經過期
+            	throw new RuntimeException("Token 已經過期");
             }
 
             return true;
