@@ -45,7 +45,7 @@ public class SecurityConfig {
 			// 預設 logout 只接受 POST，這裡允許 GET（不建議於生產環境使用）
 			.logoutRequestMatcher(PathPatternRequestMatcher.withDefaults()
 		            .matcher(HttpMethod.GET, "/logout"))
-			.permitAll() // 允許所有人存取登出c
+			.permitAll() // 允許所有人存取登出
 		)
 		// ===== 例外處理（權限不足）設定 =====
 		.exceptionHandling(exception -> exception
