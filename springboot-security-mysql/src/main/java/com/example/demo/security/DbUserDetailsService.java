@@ -42,7 +42,7 @@ public class DbUserDetailsService implements UserDetailsService {
 				.username(appUser.getUsername())
 				.password(appUser.getPassword())
 				.roles(appUser.getRole()) // 資料庫會存放 USER, 這裡會自動轉成 ROLE_USER
-				.disabled(!appUser.isEnabled())
+				.disabled(!appUser.isEnabled()) // 注意: 要加 !
 				.build();
 	}
 
