@@ -32,7 +32,7 @@ public class SecurityConfig {
 		// ===== 授權規則設定 =====
 		.authorizeHttpRequests(auth -> auth
 			// 允許所有人存取登入頁與靜態資源（CSS/JS/圖片）
-			.requestMatchers("/login", "/register", "/css/**", "/js/**", "/images/**").permitAll()
+			.requestMatchers("/", "/login", "/register", "/css/**", "/js/**", "/images/**").permitAll()
 			// /admin/** 僅限 ADMIN 角色
 			.requestMatchers("/admin/**").hasRole("ADMIN")
 			// /user/** 允許 USER 或 ADMIN 角色
