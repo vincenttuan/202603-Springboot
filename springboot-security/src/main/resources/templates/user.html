@@ -16,5 +16,11 @@
 		<div sec:authorize="hasAuthority('ROLE_ADMIN')">
 			ADMIN 才看得到 II
 		</div>
+		<div sec:authorize="hasRole('USER')">
+			USER 才看得到 III
+		</div>
+		<div sec:authorize="hasAuthority('ROLE_USER')">
+			USER 才看得到 IV
+		</div>
 	</body>
 </html>
