@@ -12,6 +12,11 @@ import com.example.demo.repository.AppUserRepository;
 @Configuration
 public class DataInitializer {
 	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
 	// 預設先在資料表新增一個 admin 使用者
 	@Bean
 	public CommandLineRunner initAdmin(AppUserRepository appUserRepository, PasswordEncoder passwordEncoder) {
