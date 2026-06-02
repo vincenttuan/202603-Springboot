@@ -15,6 +15,11 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 	List<Reservation> findByUserIdOrderByCreatedAtDesc(Long userId);
 	List<Reservation> findAllByOrderByCreatedAtDesc();
 	
+	// AndStatusIn 
+	// 	=> 預約狀態(status)包含在傳入集合 (statuses) 當中
+	// StartTimeLessThanAndEndTimeGreaterThan
+	// 	=> [舊預約的開始時間] < 新傳入的時間 且 [舊預約的結束時間] > 新傳入的時間
+	// 預防訂閱區間的時間重疊
 	boolean existsByItemIdAndStatusInStartTimeLessThanAndEndTimeGreaterThan(
 			Long itemId, 
 			Collection<ReservationStatus> statuses, 
