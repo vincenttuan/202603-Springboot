@@ -6,7 +6,8 @@ CREATE DATABASE rental_db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_
 <pre>
 1. 到 Maven 官方下載頁下載 Binary zip：
 https://maven.apache.org/download.cgi
-apache-maven-3.9.x-bin.zip
+  
+* 找到 apache-maven-3.9.x-bin.zip 並下載
 
 2. 解壓縮到例如：
 C:\tools\apache-maven-3.9.16
