@@ -20,10 +20,10 @@ MAVEN_HOME=C:\tools\apache-maven-3.9.16
 </pre>
 
 # 啟動後端
-cd backend-rental
+cd backend-rental <br />
 mvn spring-boot:run
 
 # 啟動前端
-cd frontend-rental
-npm install
+cd frontend-rental <br />
+npm install <br />
 npm run dev
