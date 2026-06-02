@@ -22,6 +22,32 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 	// 	預防訂閱區間的時間重疊
 	// 	StartTimeLessThan 對應參數 newEndTime（舊開始時間 < 新結束時間）
 	// 	EndTimeGreaterThan 對應參數 startEndTime（舊結束時間 > 新開始時間）
+	/*
+	 * 舊 startTime: 13:00
+	 * 舊 endTime: 15:00
+	 * 
+	 * 情境一:
+	 * 新 startTime: 14:00
+	 * 新 endTime: 16:00
+	 * 
+	 * 比對:
+	 * （舊開始時間 < 新結束時間） true
+	 * （舊結束時間 > 新開始時間） true
+	 * 
+	 * 結果: 此時段已被預約
+	 * 
+	 * 情境二:
+	 * 新 startTime: 15:30
+	 * 新 endTime: 17:00
+	 * 
+	 * 比對:
+	 * （舊開始時間 < 新結束時間） true
+	 * （舊結束時間 > 新開始時間） false
+	 * 
+	 * 結果: 可以建立預約單
+	 * 
+	 * */
+	
 	boolean existsByItemIdAndStatusInStartTimeLessThanAndEndTimeGreaterThan(
 			Long itemId, 
 			Collection<ReservationStatus> statuses, 
