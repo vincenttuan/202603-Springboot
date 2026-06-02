@@ -19,7 +19,9 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 	// 	=> 預約狀態(status)包含在傳入集合 (statuses) 當中
 	// StartTimeLessThanAndEndTimeGreaterThan
 	// 	=> [舊預約的開始時間] < 新傳入的時間 且 [舊預約的結束時間] > 新傳入的時間
-	// 預防訂閱區間的時間重疊
+	// 	預防訂閱區間的時間重疊
+	// 	StartTimeLessThan 對應參數 newEndTime（舊開始時間 < 新結束時間）
+	// 	EndTimeGreaterThan 對應參數 startEndTime（舊結束時間 > 新開始時間）
 	boolean existsByItemIdAndStatusInStartTimeLessThanAndEndTimeGreaterThan(
 			Long itemId, 
 			Collection<ReservationStatus> statuses, 
