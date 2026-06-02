@@ -18,3 +18,12 @@ MAVEN_HOME=C:\tools\apache-maven-3.9.16
 然後在 Path 加入：
 %MAVEN_HOME%\bin
 </pre>
+
+# 啟動後端
+cd backend-rental
+mvn spring-boot:run
+
+# 啟動前端
+cd frontend-rental
+npm install
+npm run dev
