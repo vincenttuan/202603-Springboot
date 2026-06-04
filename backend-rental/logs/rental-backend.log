@@ -502,3 +502,102 @@ This generated password is for development use only. Your security configuration
 2026-06-04T21:13:53.716+08:00  INFO 23028 --- [backend-rental] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-06-04T21:13:53.718+08:00  INFO 23028 --- [backend-rental] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2026-06-04T21:13:53.723+08:00  INFO 23028 --- [backend-rental] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-04T21:15:18.171+08:00  INFO 13352 --- [backend-rental] [main] com.example.demo.AddAppUser              : Starting AddAppUser using Java 17.0.18 with PID 13352 (started by User in C:\Users\User\Documents\workspace-spring-tools-for-eclipse-5.0.1.RELEASE\backend-rental)
+2026-06-04T21:15:18.172+08:00  INFO 13352 --- [backend-rental] [main] com.example.demo.AddAppUser              : No active profile set, falling back to 1 default profile: "default"
+2026-06-04T21:15:18.748+08:00  INFO 13352 --- [backend-rental] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-04T21:15:18.809+08:00  INFO 13352 --- [backend-rental] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 3 JPA repository interfaces.
+2026-06-04T21:15:19.313+08:00  INFO 13352 --- [backend-rental] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-04T21:15:19.392+08:00  INFO 13352 --- [backend-rental] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.45.Final
+2026-06-04T21:15:19.437+08:00  INFO 13352 --- [backend-rental] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-06-04T21:15:19.801+08:00  INFO 13352 --- [backend-rental] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-04T21:15:19.833+08:00  INFO 13352 --- [backend-rental] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-04T21:15:19.953+08:00  INFO 13352 --- [backend-rental] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54bb1194
+2026-06-04T21:15:19.955+08:00  INFO 13352 --- [backend-rental] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-04T21:15:20.010+08:00  INFO 13352 --- [backend-rental] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-04T21:15:20.620+08:00  INFO 13352 --- [backend-rental] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-04T21:15:20.699+08:00  INFO 13352 --- [backend-rental] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-04T21:15:21.467+08:00  INFO 13352 --- [backend-rental] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-04T21:15:22.066+08:00  WARN 13352 --- [backend-rental] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 7ae4e089-46aa-40ce-aa95-8f072f8d6ec9
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-04T21:15:22.087+08:00  INFO 13352 --- [backend-rental] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-04T21:15:22.314+08:00  INFO 13352 --- [backend-rental] [main] com.example.demo.AddAppUser              : Started AddAppUser in 4.439 seconds (process running for 5.136)
+2026-06-04T21:15:22.924+08:00  INFO 13352 --- [backend-rental] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-04T21:15:22.927+08:00  INFO 13352 --- [backend-rental] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-04T21:15:22.934+08:00  INFO 13352 --- [backend-rental] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-04T21:16:20.776+08:00  INFO 22168 --- [backend-rental] [main] com.example.demo.AddAppUser              : Starting AddAppUser using Java 17.0.18 with PID 22168 (started by User in C:\Users\User\Documents\workspace-spring-tools-for-eclipse-5.0.1.RELEASE\backend-rental)
+2026-06-04T21:16:20.777+08:00  INFO 22168 --- [backend-rental] [main] com.example.demo.AddAppUser              : No active profile set, falling back to 1 default profile: "default"
+2026-06-04T21:16:21.344+08:00  INFO 22168 --- [backend-rental] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-04T21:16:21.408+08:00  INFO 22168 --- [backend-rental] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 3 JPA repository interfaces.
+2026-06-04T21:16:21.936+08:00  INFO 22168 --- [backend-rental] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-04T21:16:22.008+08:00  INFO 22168 --- [backend-rental] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.45.Final
+2026-06-04T21:16:22.056+08:00  INFO 22168 --- [backend-rental] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-06-04T21:16:22.382+08:00  INFO 22168 --- [backend-rental] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-04T21:16:22.408+08:00  INFO 22168 --- [backend-rental] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-04T21:16:22.536+08:00  INFO 22168 --- [backend-rental] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5ad6f98e
+2026-06-04T21:16:22.538+08:00  INFO 22168 --- [backend-rental] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-04T21:16:22.595+08:00  INFO 22168 --- [backend-rental] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-04T21:16:23.196+08:00  INFO 22168 --- [backend-rental] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-04T21:16:23.270+08:00  INFO 22168 --- [backend-rental] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-04T21:16:23.975+08:00  INFO 22168 --- [backend-rental] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-04T21:16:24.646+08:00  WARN 22168 --- [backend-rental] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 8e329c17-0b9d-4bf9-bd65-cf37e8b019d2
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-04T21:16:24.663+08:00  INFO 22168 --- [backend-rental] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-04T21:16:24.940+08:00  INFO 22168 --- [backend-rental] [main] com.example.demo.AddAppUser              : Started AddAppUser in 4.436 seconds (process running for 5.152)
+2026-06-04T21:16:25.542+08:00  INFO 22168 --- [backend-rental] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-04T21:16:25.546+08:00  INFO 22168 --- [backend-rental] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-04T21:16:25.557+08:00  INFO 22168 --- [backend-rental] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-04T21:16:29.998+08:00  INFO 20960 --- [backend-rental] [main] com.example.demo.AddAppUser              : Starting AddAppUser using Java 17.0.18 with PID 20960 (started by User in C:\Users\User\Documents\workspace-spring-tools-for-eclipse-5.0.1.RELEASE\backend-rental)
+2026-06-04T21:16:30.000+08:00  INFO 20960 --- [backend-rental] [main] com.example.demo.AddAppUser              : No active profile set, falling back to 1 default profile: "default"
+2026-06-04T21:16:30.588+08:00  INFO 20960 --- [backend-rental] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-04T21:16:30.647+08:00  INFO 20960 --- [backend-rental] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 3 JPA repository interfaces.
+2026-06-04T21:16:31.118+08:00  INFO 20960 --- [backend-rental] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-04T21:16:31.215+08:00  INFO 20960 --- [backend-rental] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.45.Final
+2026-06-04T21:16:31.261+08:00  INFO 20960 --- [backend-rental] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-06-04T21:16:31.587+08:00  INFO 20960 --- [backend-rental] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-04T21:16:31.611+08:00  INFO 20960 --- [backend-rental] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-04T21:16:31.733+08:00  INFO 20960 --- [backend-rental] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@786ff0ea
+2026-06-04T21:16:31.735+08:00  INFO 20960 --- [backend-rental] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-04T21:16:31.791+08:00  INFO 20960 --- [backend-rental] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-04T21:16:32.408+08:00  INFO 20960 --- [backend-rental] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-04T21:16:32.489+08:00  INFO 20960 --- [backend-rental] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-04T21:16:33.372+08:00  INFO 20960 --- [backend-rental] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-04T21:16:33.989+08:00  WARN 20960 --- [backend-rental] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: de0497c6-2698-4b44-985e-b763605b6e6d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-04T21:16:34.013+08:00  INFO 20960 --- [backend-rental] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-04T21:16:34.288+08:00  INFO 20960 --- [backend-rental] [main] com.example.demo.AddAppUser              : Started AddAppUser in 4.579 seconds (process running for 5.283)
+2026-06-04T21:16:34.744+08:00  INFO 20960 --- [backend-rental] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-04T21:16:34.747+08:00  INFO 20960 --- [backend-rental] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-04T21:16:34.754+08:00  INFO 20960 --- [backend-rental] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

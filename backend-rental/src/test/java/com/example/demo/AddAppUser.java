@@ -24,7 +24,6 @@ public class AddAppUser {
 		return new BCryptPasswordEncoder();
 	}
 	
-	@Transactional
 	@Test
 	public void add() {
 		// 新增加 admin 與 user
