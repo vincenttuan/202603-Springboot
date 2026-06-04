@@ -35,8 +35,8 @@ public class AddReservation {
 		System.out.println("租借人: " + user.getUsername());
 		System.out.println("租借項目: " + item.getName());
 		
-		LocalDateTime startTime = LocalDateTime.of(2026, 6, 5, 19, 0);
-		LocalDateTime endTime = LocalDateTime.of(2026, 6, 5, 21, 0);
+		LocalDateTime startTime = LocalDateTime.of(2026, 6, 10, 19, 0);
+		LocalDateTime endTime = LocalDateTime.of(2026, 6, 12, 21, 0);
 		Reservation reservation = saveReservation(user, item, startTime, endTime, ReservationStatus.PENDING);
 		System.out.println("租借狀態: " + reservation.getStatus().name());
 	}
