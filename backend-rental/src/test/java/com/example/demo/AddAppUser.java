@@ -19,7 +19,6 @@ public class AddAppUser {
 	@Autowired
 	private AppUserRepository userRepository;
 	
-	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
