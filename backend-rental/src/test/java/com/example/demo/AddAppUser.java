@@ -9,6 +9,8 @@ import com.example.demo.rental.model.entity.AppUser;
 import com.example.demo.rental.model.enums.Role;
 import com.example.demo.rental.repository.AppUserRepository;
 
+import jakarta.transaction.Transactional;
+
 @SpringBootTest
 public class AddAppUser {
 	
@@ -18,6 +20,7 @@ public class AddAppUser {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Transactional
 	@Test
 	public void add() {
 		// 新增加 admin 與 user
