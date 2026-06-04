@@ -3,6 +3,7 @@ package com.example.demo;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,6 +17,7 @@ public class AddRentalItem {
 	@Autowired
 	RentalItemRepository itemRepository;
 	
+	@Test
 	public void add() {
 		
 		if(itemRepository.count() == 0) {
