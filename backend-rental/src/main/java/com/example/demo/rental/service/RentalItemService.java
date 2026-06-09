@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.rental.exception.ResourceNotFoundException;
 import com.example.demo.rental.mapper.RentalItemMapper;
+import com.example.demo.rental.model.dto.item.RentalItemRequest;
 import com.example.demo.rental.model.dto.item.RentalItemResponse;
 import com.example.demo.rental.model.entity.RentalItem;
 import com.example.demo.rental.repository.RentalItemRepository;
+
+import jakarta.transaction.Transactional;
 
 /**
  * 租用項目服務層
@@ -64,6 +67,26 @@ public class RentalItemService {
 		RentalItem rentalItem = getEntity(id);
 		return RentalItemMapper.toResponse(rentalItem);
 	}
+	
+	/**
+	 * 新增租用項目
+	 * 此方法會將前端傳入的 Request DTO 轉換並複製到新的 RentalItem Entity
+	 * 再透過 JAP Respository 寫入到資料庫
+	 * 
+	 * @Transactional 確保新增流程在同一個交易中完成
+	 * 若過程中發生 RuntimeException 資料庫操作會自動回滾
+	 * */
+	@Transactional
+	public RentalItemResponse create(RentalItemRequest request) {
+		RentalItem item = new RentalItem();
+		RentalItemMapper.copyToEntity(request, item);
+		// save
+		item = rentalItemRepository.save(item);
+		// Entity 轉 Response DTO
+		return RentalItemMapper.toResponse(item);
+	}
+	
+	
 	
 	
 	// 根據 id 取得 RentalItem Entity
