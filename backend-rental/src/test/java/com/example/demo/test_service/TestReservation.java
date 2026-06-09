@@ -44,11 +44,21 @@ public class TestReservation {
 				
 	}
 	
-	@Test
+	//@Test
 	public void findMine() {
 		List<ReservationResponse> list = reservationService.findMine("admin");
 		System.out.println("筆數: " + list.size());
 		list.forEach(System.out::println);
+	}
+	
+	@Test
+	public void cancelMine() {
+		try {
+			reservationService.cancelMine("user", 1L);
+			System.out.println("取消成功");
+		} catch (Exception e) {
+			System.err.println(e);
+		}
 	}
 	
 }
