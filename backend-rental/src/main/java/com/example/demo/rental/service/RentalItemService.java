@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.rental.exception.ResourceNotFoundException;
 import com.example.demo.rental.mapper.RentalItemMapper;
 import com.example.demo.rental.model.dto.item.RentalItemResponse;
 import com.example.demo.rental.model.entity.RentalItem;
@@ -53,6 +54,22 @@ public class RentalItemService {
 		
 		// entity 轉 DTO
 		return items.stream().map(RentalItemMapper::toResponse).toList();
+	}
+	
+	/**
+	 * 依照租用項目 ID 來查詢單筆資料
+	 * 若 ID 不存在會拋出 ResourceNotFoundException
+	 * */
+	public RentalItemResponse findById(Long id) throws ResourceNotFoundException {
+		RentalItem rentalItem = getEntity(id);
+		return RentalItemMapper.toResponse(rentalItem);
+	}
+	
+	
+	// 根據 id 取得 RentalItem Entity
+	private RentalItem getEntity(Long id) {
+		return rentalItemRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("找不到租用項目 id=" + id));
 	}
 	
 	
