@@ -1,6 +1,14 @@
 package com.example.demo.rental.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.demo.rental.mapper.RentalItemMapper;
+import com.example.demo.rental.model.dto.item.RentalItemResponse;
+import com.example.demo.rental.model.entity.RentalItem;
+import com.example.demo.rental.repository.RentalItemRepository;
 
 /**
  * 租用項目服務層
@@ -19,5 +27,35 @@ import org.springframework.stereotype.Service;
  * */
 @Service
 public class RentalItemService {
-
+	
+	// 租用項目資料存取物件
+	@Autowired
+	private RentalItemRepository rentalItemRepository;
+	
+	/* 查詢租用項目清單
+	 * 參數可以輸入 keyword 與 type
+	 * 回傳: List<RentalItemResponse>
+	 */
+	public List<RentalItemResponse> findAll(String keyword, String type) {
+		boolean hasKeyword = keyword != null && !keyword.isBlank();
+		boolean hastype = type != null && !type.isBlank();
+		
+		List<RentalItem> items;
+		if(hasKeyword && hastype) {
+			items = rentalItemRepository.findByNameContainingIgnoreCaseAndTypeIgnoreCase(keyword, type);
+		} else if(hasKeyword) {
+			items = rentalItemRepository.findByNameContainingIgnoreCase(keyword);
+		} else if(hastype) {
+			items = rentalItemRepository.findByTypeContainingIgnoreCase(type);
+		} else {
+			items = rentalItemRepository.findAll();
+		}
+		
+		// entity 轉 DTO
+		return items.stream().map(RentalItemMapper::toResponse).toList();
+	}
+	
+	
+	
+	
 }
