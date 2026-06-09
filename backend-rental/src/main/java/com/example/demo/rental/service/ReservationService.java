@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.rental.exception.BusinessException;
 import com.example.demo.rental.exception.ResourceNotFoundException;
@@ -18,8 +19,6 @@ import com.example.demo.rental.model.entity.Reservation;
 import com.example.demo.rental.model.enums.ReservationStatus;
 import com.example.demo.rental.repository.AppUserRepository;
 import com.example.demo.rental.repository.ReservationRepository;
-
-import jakarta.transaction.Transactional;
 
 /**
  * 預約服務層
@@ -112,8 +111,19 @@ public class ReservationService {
 		return ReservationMapper.toResponse(reservation);
 	}
 	
-	
-	
+	/**
+	 * 查詢目前登入會員自己的預約紀錄
+	 * 
+	 * */
+	@Transactional(readOnly = true)
+	public List<ReservationResponse> findMine(String username) {
+		AppUser user = appUserRepository.findByUsername(username)
+				.orElseThrow(() -> new ResourceNotFoundException("找不到使用者"));
+		
+		List<Reservation> list = reservationRepository.findByUserIdOrderByCreatedAtDesc(user.getId());
+		
+		return list.stream().map(ReservationMapper::toResponse).toList();
+	}
 	
 	
 	

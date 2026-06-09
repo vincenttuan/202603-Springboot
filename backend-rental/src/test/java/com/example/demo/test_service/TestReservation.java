@@ -1,12 +1,16 @@
 package com.example.demo.test_service;
 
+import static org.mockito.ArgumentMatchers.anyList;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.rental.model.dto.reservation.ReservationCreateRequest;
+import com.example.demo.rental.model.dto.reservation.ReservationResponse;
 import com.example.demo.rental.service.ReservationService;
 
 @SpringBootTest
@@ -15,9 +19,9 @@ public class TestReservation {
 	@Autowired
 	private ReservationService reservationService;
 	
-	@Test
+	//@Test
 	public void create() {
-		String username = "user";
+		String username = "admin";
 		
 		LocalDateTime startTime = LocalDateTime.now()
 				.plusDays(1);
@@ -26,7 +30,7 @@ public class TestReservation {
 				.plusDays(2);
 		
 		ReservationCreateRequest request = new ReservationCreateRequest();
-		request.setItemId(1L);
+		request.setItemId(2L);
 		request.setStartTime(startTime);
 		request.setEndTime(endTime);
 		request.setNote("測試測試");
@@ -37,10 +41,14 @@ public class TestReservation {
 		} catch (Exception e) {
 			System.err.println(e);
 		}
-		
-		
-		
 				
+	}
+	
+	@Test
+	public void findMine() {
+		List<ReservationResponse> list = reservationService.findMine("admin");
+		System.out.println("筆數: " + list.size());
+		list.forEach(System.out::println);
 	}
 	
 }
