@@ -126,8 +126,43 @@ public class ReservationService {
 	}
 	
 	
+	/**
+	 * 查詢所有的預約
+	 * 
+	 * */
+	@Transactional(readOnly = true)
+	public List<ReservationResponse> findAll() {
+		List<Reservation> list = reservationRepository.findAllByOrderByCreatedAtDesc();
+		return list.stream().map(ReservationMapper::toResponse).toList();
+	}
 	
+	/**
+	 * 取消會員自己的預約
+	 * 
+	 * */
+	@Transactional
+	public ReservationResponse cancelMine(String username, Long id) {
+		AppUser user = appUserRepository.findByUsername(username)
+				.orElseThrow(() -> new ResourceNotFoundException("找不到使用者"));
+		
+		Reservation reservation = getEntity(id);
+		
+		if(!reservation.getUser().getId().equals(user.getId())) {
+			throw new BusinessException("只能取消自己的預約");
+		}
+		
+		if(reservation.getStatus() != ReservationStatus.PENDING && reservation.getStatus() != ReservationStatus.APPROVED) {
+			throw new BusinessException("目前狀態不可取消");
+		}
+		
+		reservation.setStatus(ReservationStatus.CANCELED);
+		return ReservationMapper.toResponse(reservation);
+		
+	}
 	
-	
+	private Reservation getEntity(Long id) {
+		return reservationRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("找不到預約 id=" + id));
+	}
 	
 }
