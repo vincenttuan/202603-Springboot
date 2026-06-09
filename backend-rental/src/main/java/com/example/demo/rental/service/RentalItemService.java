@@ -96,7 +96,7 @@ public class RentalItemService {
 	 * 所以當方法結束並提交交易時, 會自動執行更新資料庫的動作(不用 save)
 	 * */
 	@Transactional
-	public RentalItemResponse update(Long id, RentalItemRequest request) {
+	public RentalItemResponse update(Long id, RentalItemRequest request) throws ResourceNotFoundException {
 		RentalItem item = getEntity(id);
 		RentalItemMapper.copyToEntity(request, item);
 		// 不用 save
@@ -104,6 +104,17 @@ public class RentalItemService {
 		return RentalItemMapper.toResponse(item);
 	}
 	
+	/**
+	 * 刪除指定項目
+	 * 
+	 * 確認資料存在後就會進行刪除
+	 * 
+	 * */
+	@Transactional
+	public void delete(Long id) {
+		RentalItem item = getEntity(id);
+		rentalItemRepository.delete(item);
+	}
 	
 	
 	
