@@ -86,6 +86,24 @@ public class RentalItemService {
 		return RentalItemMapper.toResponse(item);
 	}
 	
+	/**
+	 * 修改租用項目
+	 * 
+	 * 此方法會先依照 ID 取得 Entity, 再將 Request DTO 中的新資料
+	 * 複製到該 Entity
+	 * 
+	 * 由於 Entity 是處於 JPA Persistence Content 管理狀態,
+	 * 所以當方法結束並提交交易時, 會自動執行更新資料庫的動作(不用 save)
+	 * */
+	@Transactional
+	public RentalItemResponse update(Long id, RentalItemRequest request) {
+		RentalItem item = getEntity(id);
+		RentalItemMapper.copyToEntity(request, item);
+		// 不用 save
+		
+		return RentalItemMapper.toResponse(item);
+	}
+	
 	
 	
 	
