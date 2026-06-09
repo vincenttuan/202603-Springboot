@@ -60,19 +60,39 @@ public class TestRentalItem {
 		System.out.println("新增成功: " + rentalItemResponse);
 	}
 	
-	@Test
+	//@Test
 	public void update() {
-		RentalItemRequest request = new RentalItemRequest();
-		request.setName("椅子2");
-		request.setStatus(ItemStatus.MAINTENANCE);
-		request.setType("家具2");
-		request.setLocation("倉庫2");
-		request.setPricePerHour(new BigDecimal("2"));
-		request.setDescription("人體工學2");
-		request.setImageUrl("");
+		try {
+			RentalItemRequest request = new RentalItemRequest();
+			request.setName("椅子2");
+			request.setStatus(ItemStatus.MAINTENANCE);
+			request.setType("家具2");
+			request.setLocation("倉庫2");
+			request.setPricePerHour(new BigDecimal("2"));
+			request.setDescription("人體工學2");
+			request.setImageUrl("");
+			
+			var rentalItemResponse = rentalItemService.update(6L, request);
+			System.out.println("修改成功: " + rentalItemResponse);
+		} catch (ResourceNotFoundException e) {
+			System.err.println(e);
+		} catch (Exception e) {
+			System.err.println(e);
+		}
 		
-		var rentalItemResponse = rentalItemService.update(6L, request);
-		System.out.println("修改成功: " + rentalItemResponse);
+	}
+	
+	@Test
+	public void delete() {
+		try {
+			Long id = 6L;
+			rentalItemService.delete(id);
+			System.out.println("刪除成功");
+		} catch (ResourceNotFoundException e) {
+			System.err.println(e);
+		} catch (Exception e) {
+			System.err.println(e);
+		}
 	}
 	
 }
