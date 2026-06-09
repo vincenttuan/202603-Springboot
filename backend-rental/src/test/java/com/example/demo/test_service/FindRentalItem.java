@@ -14,7 +14,7 @@ public class FindRentalItem {
 	
 	@Test
 	public void find() {
-		String keyword = "4k"; // "電腦", "4k"
+		String keyword = null; // "電腦", "4k"
 		String type = null; // "教室", "設備" , "場地"
 		var list = rentalItemService.findAll(keyword, type);
 		
