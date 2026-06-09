@@ -119,7 +119,7 @@ public class RentalItemService {
 	
 	
 	// 根據 id 取得 RentalItem Entity
-	private RentalItem getEntity(Long id) {
+	public RentalItem getEntity(Long id) {
 		return rentalItemRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("找不到租用項目 id=" + id));
 	}

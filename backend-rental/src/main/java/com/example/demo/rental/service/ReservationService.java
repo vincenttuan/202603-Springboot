@@ -1,6 +1,25 @@
 package com.example.demo.rental.service;
 
+import java.math.BigDecimal;
+import java.time.Duration;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.demo.rental.exception.BusinessException;
+import com.example.demo.rental.exception.ResourceNotFoundException;
+import com.example.demo.rental.mapper.ReservationMapper;
+import com.example.demo.rental.model.dto.reservation.ReservationCreateRequest;
+import com.example.demo.rental.model.dto.reservation.ReservationResponse;
+import com.example.demo.rental.model.entity.AppUser;
+import com.example.demo.rental.model.entity.RentalItem;
+import com.example.demo.rental.model.entity.Reservation;
+import com.example.demo.rental.model.enums.ReservationStatus;
+import com.example.demo.rental.repository.AppUserRepository;
+import com.example.demo.rental.repository.ReservationRepository;
+
+import jakarta.transaction.Transactional;
 
 /**
  * 預約服務層
@@ -23,8 +42,82 @@ import org.springframework.stereotype.Service;
  * 5.只有 PENDING 狀態可以被核准或退回
  * 
  * */
-
 @Service
 public class ReservationService {
-
+	
+	@Autowired
+	private ReservationRepository reservationRepository;
+	
+	@Autowired
+	private AppUserRepository appUserRepository;
+	
+	@Autowired
+	private RentalItemService rentalItemService;
+	
+	/**
+	 * 建立新的租用預約
+	 * 
+	 * 流程:
+	 * 1.驗證預約開始時間與結束時間是否合法
+	 * 2.依照 username 查詢目前登入的使用者
+	 * 3.依照 itemId 查詢租用項目
+	 * 4.確認租用項目狀態是否可租用
+	 * 5.檢查同一租用項目在指定時段是否已被預約
+	 * 6.依照租用時數與每小時價格計算總金額
+	 * 7.建立 PENDING 狀態的預約資料
+	 * 
+	 * */
+	
+	@Transactional
+	public ReservationResponse create(String username, ReservationCreateRequest request) {
+		
+		if(!request.getStartTime().isBefore(request.getEndTime())) {
+			throw new BusinessException("結束時間必須晚於開始時間");
+		}
+		
+		// 租用人
+		AppUser user = appUserRepository.findByUsername(username)
+				.orElseThrow(() -> new ResourceNotFoundException("找不到使用者"));
+		
+		// 租用項目
+		RentalItem item = rentalItemService.getEntity(request.getItemId());
+		
+		// 時間是否衝突 ?
+		boolean conflict = reservationRepository.existsOverlap(
+				item.getId(), 
+				List.of(ReservationStatus.PENDING, ReservationStatus.APPROVED), 
+				request.getEndTime(), 
+				request.getStartTime());
+		
+		if(conflict) {
+			throw new BusinessException("此時段已經有人預約, 請更換時間");
+		}
+		
+		// 計算租金
+		long hours = Duration.between(request.getStartTime(), request.getEndTime()).toHours();
+		BigDecimal totalAmount = item.getPricePerHour().multiply(new BigDecimal(hours));
+		
+		// 預約
+		Reservation reservation = new Reservation();
+		reservation.setUser(user);
+		reservation.setItem(item);
+		reservation.setStartTime(request.getStartTime());
+		reservation.setEndTime(request.getEndTime());
+		reservation.setTotalAmount(totalAmount);
+		reservation.setStatus(ReservationStatus.PENDING);
+		reservation.setNote(request.getNote());
+		
+		reservation = reservationRepository.save(reservation);
+		
+		return ReservationMapper.toResponse(reservation);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
