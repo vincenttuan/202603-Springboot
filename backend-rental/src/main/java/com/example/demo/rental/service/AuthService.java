@@ -55,6 +55,10 @@ public class AuthService {
 		
 	}
 	
+	/**
+	 * 登入驗證
+	 * 
+	 * */
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
