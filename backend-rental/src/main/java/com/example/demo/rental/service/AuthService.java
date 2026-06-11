@@ -31,6 +31,8 @@ public class AuthService {
 	@Autowired
 	private AppUserRepository appUserRepository;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	/**
 	 * 會員註冊
@@ -44,7 +46,7 @@ public class AuthService {
 		
 		AppUser user = new AppUser();
 		user.setUsername(request.getUsername());
-		user.setPassword(passwordEncoder().encode(request.getPassword()));
+		user.setPassword(passwordEncoder.encode(request.getPassword()));
 		user.setFullName(request.getFullName());
 		user.setPhone(request.getPhone());
 		user.setRole(Role.USER);
@@ -60,9 +62,6 @@ public class AuthService {
 	 * 
 	 * */
 	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+	
 	
 }
