@@ -160,6 +160,26 @@ public class ReservationService {
 		
 	}
 	
+	/**
+	 * 核准指定預約
+	 * 
+	 * 此方法通常是給管理者使用
+	 * 只有 PENDING 狀態的預約才可以核准, 核准後變為 APPROVED
+	 * 
+	 * */
+	@Transactional
+	public ReservationResponse approve(Long id) {
+		Reservation reservation = getEntity(id);
+		if(reservation.getStatus() != ReservationStatus.PENDING) {
+			throw new BusinessException("只有 PENDING 狀態才可以核准");
+		}
+		reservation.setStatus(ReservationStatus.APPROVED);
+		return ReservationMapper.toResponse(reservation);
+		
+	}
+	
+	
+	
 	private Reservation getEntity(Long id) {
 		return reservationRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("找不到預約 id=" + id));
