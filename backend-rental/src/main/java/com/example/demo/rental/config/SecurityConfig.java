@@ -44,7 +44,7 @@ import com.example.demo.rental.security.JwtAuthenticationFilter;
  * 
  * */
 @Configuration
-@EnableMethodSecurity
+@EnableMethodSecurity // 方法層級權限, 若 controller 有標註 @PreAuthorize 註解, 就要先設定
 public class SecurityConfig {
 	
 	// 設定 JWT Filter
