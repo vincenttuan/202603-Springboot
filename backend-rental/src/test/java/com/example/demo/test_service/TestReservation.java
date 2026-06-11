@@ -61,11 +61,21 @@ public class TestReservation {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void approve() {
 		try {
 			reservationService.approve(7L);
 			System.out.println("核准成功");
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+	}
+	
+	@Test
+	public void reject() {
+		try {
+			reservationService.reject(6L);
+			System.out.println("退回成功");
 		} catch (Exception e) {
 			System.err.println(e);
 		}
