@@ -51,11 +51,21 @@ public class TestReservation {
 		list.forEach(System.out::println);
 	}
 	
-	@Test
+	//@Test
 	public void cancelMine() {
 		try {
 			reservationService.cancelMine("user", 1L);
 			System.out.println("取消成功");
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+	}
+	
+	@Test
+	public void approve() {
+		try {
+			reservationService.approve(7L);
+			System.out.println("核准成功");
 		} catch (Exception e) {
 			System.err.println(e);
 		}
