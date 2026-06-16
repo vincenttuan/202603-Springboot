@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.rental.model.dto.ApiResponse;
+import com.example.demo.rental.model.dto.auth.LoginRequest;
+import com.example.demo.rental.model.dto.auth.LoginResponse;
 import com.example.demo.rental.model.dto.auth.RegisterRequest;
 import com.example.demo.rental.model.dto.auth.UserProfileDto;
 import com.example.demo.rental.service.AuthService;
@@ -34,6 +36,16 @@ public class AuthController {
 	public ApiResponse<UserProfileDto> register(@Valid @RequestBody RegisterRequest request) {
 		UserProfileDto userProfileDto = authService.register(request);
 		return ApiResponse.created("註冊成功", userProfileDto);
+	}
+	
+	/**
+	 * 使用者登入
+	 * URL: POST /api/auth/login
+	 * */
+	@PostMapping("/login")
+	public ApiResponse<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+		LoginResponse response = authService.login(request);
+		return ApiResponse.success("登入成功", response);
 	}
 	
 	
