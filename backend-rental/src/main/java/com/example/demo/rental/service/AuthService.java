@@ -101,7 +101,14 @@ public class AuthService {
 		return new LoginResponse(token, "Bearer", UserMapper.toProfileDto(user));
 	}
 	
-	
-	
+	/**
+	 * 查詢目前使用者的個人資料
+	 * 系統會根據 username 查詢使用者資料並轉換 DTO 回傳給前端
+	 * */
+	public UserProfileDto getProfile(String username) {
+		AppUser user = appUserRepository.findByUsername(username)
+				.orElseThrow(() -> new ResourceNotFoundException("找不到使用者"));
+		return UserMapper.toProfileDto(user);
+	}
 	
 }
