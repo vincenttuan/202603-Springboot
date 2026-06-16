@@ -113,6 +113,9 @@ public class AuthControllerTest {
 		String token = root.path("data").path("token").asText();
 		System.out.println("token: " + token);
 		
+		// 故意放錯誤的 token
+		//token = "1234";
+		
 		// 帶著 JWT Token 呼叫 "/api/auth/me"
 		mockMvc.perform(get("/api/auth/me")
 				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
