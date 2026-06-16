@@ -5,6 +5,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -21,8 +22,8 @@ import com.example.demo.rental.service.AuthService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
-@AutoConfigureMockMvc(addFilters = false)
-//@AutoConfigureMockMvc
+//@AutoConfigureMockMvc(addFilters = false)
+@AutoConfigureMockMvc
 public class AuthControllerTest {
 	
 	/**
@@ -55,6 +56,7 @@ public class AuthControllerTest {
 				.with(csrf()) // 防止跨站請求偽造
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(json))
+				.andDo(print())
 				.andExpect(status().isOk());
 		
 		// 驗證 AuthService.register() 真的有被呼叫到一次
@@ -74,6 +76,7 @@ public class AuthControllerTest {
 				.with(csrf())
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(loginJson))
+				.andDo(print())
 				.andExpect(status().isOk());
 			
 	}
