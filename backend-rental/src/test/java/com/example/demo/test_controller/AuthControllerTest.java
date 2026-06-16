@@ -46,7 +46,7 @@ public class AuthControllerTest {
 				""";
 		
 		mockMvc.perform(post("/api/auth/register")
-				.with(csrf())
+				.with(csrf()) // 防止跨站請求偽造
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(json))
 				.andExpect(status().isOk());
