@@ -1,6 +1,8 @@
 package com.example.demo.rental.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,5 +50,18 @@ public class AuthController {
 		return ApiResponse.success("登入成功", response);
 	}
 	
+	/**
+	 * 查詢目前登入者的資料
+	 * 
+	 * URL: GET /api/auth/me
+	 * 
+	 * Authentication
+	 * Spring Security 會根據 JWT 或登入狀態, 放入目前登入者的身分資訊
+	 * */
+	@GetMapping("/me")
+	public ApiResponse<UserProfileDto> me(Authentication authentication) {
+		UserProfileDto userProfileDto = authService.getProfile(authentication.getName());
+		return ApiResponse.success("查詢目前登入者成功", userProfileDto);
+	}
 	
 }
