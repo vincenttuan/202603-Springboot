@@ -21,8 +21,8 @@ import com.example.demo.rental.service.AuthService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
-//@AutoConfigureMockMvc(addFilters = false)
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
+//@AutoConfigureMockMvc
 public class AuthControllerTest {
 	
 	/**
@@ -68,7 +68,7 @@ public class AuthControllerTest {
 				    "username": "admin",
 				    "password": "admin123"
 				}
-				""";
+				""".trim();
 		
 		mockMvc.perform(post("/api/auth/login")
 				.with(csrf())
