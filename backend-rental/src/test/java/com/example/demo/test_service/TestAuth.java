@@ -16,7 +16,7 @@ public class TestAuth {
 	@Autowired
 	private AuthService authService;
 	
-	@Test
+	//@Test
 	public void register() {
 		RegisterRequest request = new RegisterRequest();
 		request.setUsername("user2");
@@ -30,7 +30,31 @@ public class TestAuth {
 		} catch (Exception e) {
 			System.err.println(e);
 		}
+	}
+	
+	/**
+	 * admin/admin123
+	 * user/user123
+	 * user2/2222
+	 * */
+	@Test
+	public void login() {
+		LoginRequest login = new LoginRequest();
+		login.setUsername("user");
+		login.setPassword("user123");
 		
+		try {
+			LoginResponse response = authService.login(login);
+			System.out.println("登入成功");
+			System.out.println("type: " + response.getTokenType());
+			System.out.println("token: " + response.getToken());
+			System.out.println("user: " + response.getUser());
+			System.out.println("fullname: " + response.getUser().getFullName());
+			System.out.println("username: " + response.getUser().getUsername());
+			System.out.println("role: " + response.getUser().getRole());
+		} catch (Exception e) {
+			System.err.println(e);
+		}
 	}
 	
 	
