@@ -24,6 +24,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @AutoConfigureMockMvc(addFilters = false)
 public class AuthControllerTest {
 	
+	/**
+	 * MockMvc 是用來模擬 HTTP Request
+	 * 不需要真的啟動 Tomcat, 也可以測試 Controller API
+	 * */
 	@Autowired
 	private MockMvc mockMvc;
 	
@@ -33,6 +37,7 @@ public class AuthControllerTest {
 	@Autowired
 	private ObjectMapper objectMapper;
 	
+	//@Transactional // 測試結束之後會自動 rollback, 避免每次測試都真的新增一筆資料到資料庫
 	@Test
 	public void register() throws Exception {
 		
