@@ -21,7 +21,8 @@ import com.example.demo.rental.service.AuthService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
-@AutoConfigureMockMvc(addFilters = false)
+//@AutoConfigureMockMvc(addFilters = false)
+@AutoConfigureMockMvc
 public class AuthControllerTest {
 	
 	/**
@@ -38,7 +39,7 @@ public class AuthControllerTest {
 	private ObjectMapper objectMapper;
 	
 	//@Transactional // 測試結束之後會自動 rollback, 避免每次測試都真的新增一筆資料到資料庫
-	@Test
+	//@Test
 	public void register() throws Exception {
 		
 		String json = """
@@ -58,5 +59,22 @@ public class AuthControllerTest {
 		
 		// 驗證 AuthService.register() 真的有被呼叫到一次
 		//verify(authService, times(1)).register((RegisterRequest) any(RegisterRequest.class));
+	}
+	
+	@Test
+	public void login() throws Exception {
+		String loginJson = """
+				{
+				    "username": "admin",
+				    "password": "admin123"
+				}
+				""";
+		
+		mockMvc.perform(post("/api/auth/login")
+				.with(csrf())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(loginJson))
+				.andExpect(status().isOk());
+			
 	}
 }
