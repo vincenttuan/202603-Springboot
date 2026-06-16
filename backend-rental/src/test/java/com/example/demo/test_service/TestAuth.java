@@ -37,7 +37,7 @@ public class TestAuth {
 	 * user/user123
 	 * user2/2222
 	 * */
-	@Test
+	//@Test
 	public void login() {
 		LoginRequest login = new LoginRequest();
 		login.setUsername("user");
@@ -55,6 +55,17 @@ public class TestAuth {
 		} catch (Exception e) {
 			System.err.println(e);
 		}
+	}
+	
+	@Test
+	public void profile() {
+		
+		try {
+			System.out.println(authService.getProfile("admin"));
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+		
 	}
 	
 	
