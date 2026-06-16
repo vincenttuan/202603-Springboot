@@ -2,18 +2,24 @@ package com.example.demo.rental.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.rental.exception.BusinessException;
+import com.example.demo.rental.exception.ResourceNotFoundException;
 import com.example.demo.rental.mapper.UserMapper;
+import com.example.demo.rental.model.dto.auth.LoginRequest;
+import com.example.demo.rental.model.dto.auth.LoginResponse;
 import com.example.demo.rental.model.dto.auth.RegisterRequest;
 import com.example.demo.rental.model.dto.auth.UserProfileDto;
 import com.example.demo.rental.model.entity.AppUser;
 import com.example.demo.rental.model.enums.Role;
 import com.example.demo.rental.repository.AppUserRepository;
+import com.example.demo.rental.security.JwtService;
 
 /**
  * 認證與會員帳號服務層
