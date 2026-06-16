@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -13,12 +14,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.rental.model.dto.auth.RegisterRequest;
 import com.example.demo.rental.service.AuthService;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
@@ -63,7 +67,7 @@ public class AuthControllerTest {
 		//verify(authService, times(1)).register((RegisterRequest) any(RegisterRequest.class));
 	}
 	
-	@Test
+	//@Test
 	public void login() throws Exception {
 		String loginJson = """
 				{
@@ -78,6 +82,43 @@ public class AuthControllerTest {
 				.content(loginJson))
 				.andDo(print())
 				.andExpect(status().isOk());
+			
+	}
+	
+	@Test
+	public void me() throws Exception {
+		String loginJson = """
+				{
+				    "username": "admin",
+				    "password": "admin123"
+				}
+				""".trim();
+		
+		MvcResult loginResult = mockMvc.perform(post("/api/auth/login")
+				.with(csrf())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(loginJson))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andReturn();
+		
+		// 從登入回應的 JSON 中取出 token
+		String responseBody = loginResult.getResponse().getContentAsString();
+		
+		// json 字串轉 json 物件
+		JsonNode root = objectMapper.readTree(responseBody);
+		System.out.println("json root: " + root);
+		
+		// JWT Token
+		String token = root.path("data").path("token").asText();
+		System.out.println("token: " + token);
+		
+		// 帶著 JWT Token 呼叫 "/api/auth/me"
+		mockMvc.perform(get("/api/auth/me")
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+				.andDo(print())
+				.andExpect(status().isOk());
+		
 			
 	}
 }
