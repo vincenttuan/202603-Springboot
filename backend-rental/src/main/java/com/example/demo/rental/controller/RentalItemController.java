@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -80,5 +81,18 @@ public class RentalItemController {
 		return ApiResponse.created("新增租用項目成功", rentalItem);
 	}
 	
+	/**
+	 * 4. 管理者修改租用項目
+	 * 範例:
+	 * PUT /api/admin/items/{id}
+	 * 
+	 * PUT 通常代表更新整筆資料
+	 * */
+	@PutMapping("/admin/items/{id}")
+	@PreAuthorize("hasRole('ADMIN')") // 限制只有 ADMIN 角色可以修改
+	public ApiResponse<RentalItemResponse> update(@PathVariable Long id, @Valid @RequestBody RentalItemRequest request) {
+		RentalItemResponse rentalItem = rentalItemService.update(id, request);
+		return ApiResponse.created("修改租用項目成功", rentalItem);
+	}
 	
 }
