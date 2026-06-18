@@ -1,5 +1,6 @@
 package com.example.demo.rental.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +32,7 @@ import jakarta.validation.Valid;
 public class ReservationController {
 	
 	// 注入預約服務
+	@Autowired
 	private ReservationService reservationService;
 	
 	/**
