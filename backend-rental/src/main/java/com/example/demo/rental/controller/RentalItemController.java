@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -101,5 +102,10 @@ public class RentalItemController {
 	 * DELETE /api/admin/items/{id}
 	 * 請自行試著撰寫...
 	 * */
-	
+	@DeleteMapping("/admin/items/{id}")
+	@PreAuthorize("hasRole('ADMIN')") // 限制只有 ADMIN 角色可以刪除
+	public ApiResponse<RentalItemResponse> delete(@PathVariable Long id) {
+		rentalItemService.delete(id);
+		return ApiResponse.created("刪除租用項目成功", null);
+	}
 }
