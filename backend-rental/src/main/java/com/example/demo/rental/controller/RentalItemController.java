@@ -95,4 +95,11 @@ public class RentalItemController {
 		return ApiResponse.created("修改租用項目成功", rentalItem);
 	}
 	
+	/**
+	 * 5. 管理這刪除租用項目
+	 * 範例:
+	 * DELETE /api/admin/items/{id}
+	 * 請自行試著撰寫...
+	 * */
+	
 }
