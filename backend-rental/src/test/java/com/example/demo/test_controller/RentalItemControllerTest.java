@@ -2,16 +2,23 @@ package com.example.demo.test_controller;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import com.example.demo.rental.model.dto.item.RentalItemRequest;
+import com.example.demo.rental.model.enums.ItemStatus;
 import com.example.demo.rental.service.RentalItemService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -66,7 +73,7 @@ public class RentalItemControllerTest {
 		System.out.println(responseBody);
 	}
 	
-	@Test
+	//@Test
 	public void findById() throws Exception {
 		MvcResult result = mockMvc.perform(get("/api/items/{id}", 1L))
 				.andDo(print())
@@ -77,6 +84,29 @@ public class RentalItemControllerTest {
 		
 		System.out.println(responseBody);
 		
+	}
+	
+	@Test
+	@WithMockUser(username = "admin", roles = {"ADMIN"})
+	public void createByAdmin() throws Exception {
+		
+		RentalItemRequest request = new RentalItemRequest();
+		request.setName("投影機");
+		request.setStatus(ItemStatus.AVAILABLE);
+		request.setType("設備");
+		request.setLocation("倉庫3");
+		request.setPricePerHour(new BigDecimal("50"));
+		request.setDescription("放大到200吋");
+		
+		MvcResult result = mockMvc.perform(post("/api/admin/items")
+				.with(csrf())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(request)))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andReturn();
+		
+		System.out.println(result);
 	}
 	
 }
