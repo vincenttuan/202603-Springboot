@@ -3,15 +3,21 @@ package com.example.demo.rental.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.rental.model.dto.ApiResponse;
+import com.example.demo.rental.model.dto.item.RentalItemRequest;
 import com.example.demo.rental.model.dto.item.RentalItemResponse;
 import com.example.demo.rental.service.RentalItemService;
+
+import jakarta.validation.Valid;
 
 /**
  * 租用項目 Controller
@@ -59,6 +65,19 @@ public class RentalItemController {
 	public ApiResponse<RentalItemResponse> findById(@PathVariable Long id) {
 		RentalItemResponse rentalItem = rentalItemService.findById(id);
 		return ApiResponse.success("查詢租用項目成功", rentalItem);
+	}
+	
+	/**
+	 * 3. 管理者新增租用項目
+	 * 範例:
+	 * POST /api/admin/items
+	 * 
+	 * */
+	@PostMapping("/admin/items")
+	@PreAuthorize("hasRole('ADMIN')") // 限制只有 ADMIN 角色可以新增
+	public ApiResponse<RentalItemResponse> create(@Valid @RequestBody RentalItemRequest request) {
+		RentalItemResponse rentalItem = rentalItemService.create(request);
+		return ApiResponse.created("新增租用項目成功", rentalItem);
 	}
 	
 	
