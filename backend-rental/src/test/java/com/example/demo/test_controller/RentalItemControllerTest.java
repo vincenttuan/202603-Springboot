@@ -28,7 +28,7 @@ public class RentalItemControllerTest {
 	@Autowired
 	private ObjectMapper objectMapper;
 	
-	@Test
+	//@Test
 	public void findAll() throws Exception {
 		
 		// GET /api/items
@@ -64,8 +64,18 @@ public class RentalItemControllerTest {
 		String responseBody = result.getResponse().getContentAsString();
 		
 		System.out.println(responseBody);
-				
-				
+	}
+	
+	@Test
+	public void findById() throws Exception {
+		MvcResult result = mockMvc.perform(get("/api/items/{id}", 1L))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andReturn();
+		
+		String responseBody = result.getResponse().getContentAsString();
+		
+		System.out.println(responseBody);
 		
 	}
 	

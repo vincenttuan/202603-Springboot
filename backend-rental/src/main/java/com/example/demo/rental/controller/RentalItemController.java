@@ -54,6 +54,7 @@ public class RentalItemController {
 	 * GET /api/items/{id}
 	 * 
 	 * */
+	
 	@GetMapping("/items/{id}")
 	public ApiResponse<RentalItemResponse> findById(@PathVariable Long id) {
 		RentalItemResponse rentalItem = rentalItemService.findById(id);
