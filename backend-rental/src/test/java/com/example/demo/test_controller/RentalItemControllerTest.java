@@ -31,7 +31,32 @@ public class RentalItemControllerTest {
 	@Test
 	public void findAll() throws Exception {
 		
+		// GET /api/items
+		/*
 		MvcResult result = mockMvc.perform(get("/api/items"))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andReturn();
+		*/
+		
+		// GET /api/items?keyword=攝影機
+		/*
+		MvcResult result = mockMvc.perform(get("/api/items").param("keyword", "攝影機"))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andReturn();
+		*/
+		
+		// GET /api/items?type=設備
+		/*
+		MvcResult result = mockMvc.perform(get("/api/items").param("type", "設備"))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andReturn();
+		*/
+		
+		//GET /api/items?keyword=攝影機&type=設備
+		MvcResult result = mockMvc.perform(get("/api/items").param("keyword", "攝影機").param("type", "設備"))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andReturn();

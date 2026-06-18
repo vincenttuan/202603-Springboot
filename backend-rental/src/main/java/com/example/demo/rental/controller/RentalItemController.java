@@ -35,7 +35,7 @@ public class RentalItemController {
 	 * 1. 查詢所有可租用項目
 	 * 範例:
 	 * GET /api/items
-	 * GET /api/items?keyword=投影機
+	 * GET /api/items?keyword=攝影機
 	 * GET /api/items?type=設備
 	 * 
 	 */
