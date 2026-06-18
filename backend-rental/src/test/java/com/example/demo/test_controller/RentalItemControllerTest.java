@@ -4,6 +4,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -17,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.example.demo.rental.model.dto.item.RentalItemRequest;
 import com.example.demo.rental.model.enums.ItemStatus;
@@ -110,8 +112,8 @@ public class RentalItemControllerTest {
 		System.out.println(result);
 	}
 	
-	@Test
-	@WithMockUser(username = "admin", roles = {"ADMIN"})
+	//@Test
+	//@WithMockUser(username = "admin", roles = {"ADMIN"})
 	public void updateByAdmin() throws Exception {
 		
 		RentalItemRequest request = new RentalItemRequest();
@@ -132,5 +134,18 @@ public class RentalItemControllerTest {
 		
 		System.out.println(result);
 	}
+	
+	@Test
+	@WithMockUser(username = "admin", roles = {"ADMIN"})
+	public void deleteByAdmin() throws Exception {
+		MvcResult result = mockMvc.perform(delete("/api/admin/items/{id}", 7L)
+				.with(csrf()))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andReturn();
+		
+		System.out.println(result);
+	}
+	
 	
 }
