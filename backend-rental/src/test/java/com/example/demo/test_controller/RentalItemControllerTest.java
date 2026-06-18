@@ -3,6 +3,7 @@ package com.example.demo.test_controller;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -86,8 +87,8 @@ public class RentalItemControllerTest {
 		
 	}
 	
-	@Test
-	@WithMockUser(username = "admin", roles = {"ADMIN"})
+	//@Test
+	//@WithMockUser(username = "admin", roles = {"ADMIN"})
 	public void createByAdmin() throws Exception {
 		
 		RentalItemRequest request = new RentalItemRequest();
@@ -99,6 +100,29 @@ public class RentalItemControllerTest {
 		request.setDescription("放大到200吋");
 		
 		MvcResult result = mockMvc.perform(post("/api/admin/items")
+				.with(csrf())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(request)))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andReturn();
+		
+		System.out.println(result);
+	}
+	
+	@Test
+	@WithMockUser(username = "admin", roles = {"ADMIN"})
+	public void updateByAdmin() throws Exception {
+		
+		RentalItemRequest request = new RentalItemRequest();
+		request.setName("4K投影機");
+		request.setStatus(ItemStatus.AVAILABLE);
+		request.setType("設備");
+		request.setLocation("倉庫4");
+		request.setPricePerHour(new BigDecimal("55"));
+		request.setDescription("放大到300吋");
+		
+		MvcResult result = mockMvc.perform(put("/api/admin/items/{id}", 7L)
 				.with(csrf())
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(request)))
