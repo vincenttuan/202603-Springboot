@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,5 +47,18 @@ public class RentalItemController {
 		List<RentalItemResponse> rentalItems = rentalItemService.findAll(keyword, type);
 		return ApiResponse.success("查詢租用項目成功", rentalItems);
 	}
+	
+	/**
+	 * 2. 查詢單一租用項目
+	 * 範例:
+	 * GET /api/items/{id}
+	 * 
+	 * */
+	@GetMapping("/items/{id}")
+	public ApiResponse<RentalItemResponse> findById(@PathVariable Long id) {
+		RentalItemResponse rentalItem = rentalItemService.findById(id);
+		return ApiResponse.success("查詢租用項目成功", rentalItem);
+	}
+	
 	
 }
