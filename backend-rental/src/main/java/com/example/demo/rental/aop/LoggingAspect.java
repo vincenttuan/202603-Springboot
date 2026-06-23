@@ -4,19 +4,12 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
-import com.example.demo.rental.repository.RentalItemRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Aspect
 @Component
 @Slf4j
 public class LoggingAspect {
-
-    private final RentalItemRepository rentalItemRepository;
-
-    LoggingAspect(RentalItemRepository rentalItemRepository) {
-        this.rentalItemRepository = rentalItemRepository;
-    }
 	
 	@Around("execution(* com.example.demo.rental.controller..*(..)) || execution(* com.example.demo.rental.service..*(..))")
 	public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
