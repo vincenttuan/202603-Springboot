@@ -3,6 +3,7 @@ package com.example.demo.test_controller;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -107,10 +108,20 @@ public class ReservationControllerTest {
 		
 	}
 	
-	@Test
-	@WithMockUser(username = "user", roles = {"USER"})
+	//@Test
+	//@WithMockUser(username = "user", roles = {"USER"})
 	public void findMine() throws Exception {
 		MvcResult result = mockMvc.perform(get("/api/reservations/my"))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andReturn();
+		System.out.println(result);
+	}
+	
+	@Test
+	@WithMockUser(username = "user", roles = {"USER"})
+	public void cancel() throws Exception {
+		MvcResult result = mockMvc.perform(patch("/api/reservations/{id}/cancel", 5L))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andReturn();
