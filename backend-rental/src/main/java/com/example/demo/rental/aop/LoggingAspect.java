@@ -28,6 +28,7 @@ public class LoggingAspect {
 			Object result = joinPoint.proceed();
 			long diff = System.currentTimeMillis() - start;
 			log.info("{} 執行成功, 耗時 {} ms", methodName, diff);
+			return result;
 		} catch (Throwable ex) {
 			long diff = System.currentTimeMillis() - start;
 			log.warn("{} 執行失敗, 耗時 {} ms, 原因: {}", methodName, diff, ex.getMessage());
