@@ -3,6 +3,7 @@ package com.example.demo.rental.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -78,5 +79,16 @@ public class ReservationController {
 		return ApiResponse.success("取消預約成功", reservationResponse);
 	}
 	
+	/**
+	 * 查詢所有預約
+	 * 範例: GET /api/admin/reservations
+	 * 
+	 * */
+	@GetMapping("/admin/reservations")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ApiResponse<List<ReservationResponse>> findAll() {
+		List<ReservationResponse> reservationResponses = reservationService.findAll();
+		return ApiResponse.success("查詢所有預約成功", reservationResponses);
+	}
 	
 }
