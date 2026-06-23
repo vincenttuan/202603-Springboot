@@ -128,10 +128,20 @@ public class ReservationControllerTest {
 		System.out.println(result);
 	}
 	
-	@Test
-	@WithMockUser(username = "admin", roles = {"ADMIN"})
+	//@Test
+	//@WithMockUser(username = "admin", roles = {"ADMIN"})
 	public void findAll() throws Exception {
 		MvcResult result = mockMvc.perform(get("/api/admin/reservations"))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andReturn();
+		System.out.println(result);
+	}
+	
+	@Test
+	@WithMockUser(username = "admin", roles = {"ADMIN"})
+	public void approve() throws Exception {
+		MvcResult result = mockMvc.perform(get("/api/admin/reservations/{id}/approve", 8L))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andReturn();

@@ -91,4 +91,16 @@ public class ReservationController {
 		return ApiResponse.success("查詢所有預約成功", reservationResponses);
 	}
 	
+	/**
+	 * 核准預約
+	 * 範例: GET /api/admin/reservations/{id}/approve
+	 * 
+	 * */
+	@GetMapping("/admin/reservations/{id}/approve")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ApiResponse<ReservationResponse> approve(@PathVariable Long id) {
+		ReservationResponse reservationResponse = reservationService.approve(id);
+		return ApiResponse.success("核准預約成功", reservationResponse);
+	}
+	
 }
