@@ -21,7 +21,7 @@ function App() {
     <main className="container">
       {/* Routes 代表路由區域 */}
       <Routes>
-        {/* 首頁 */}
+        {/* 首頁(租用項目) */}
         <Route path="/" element={<ItemsPage />} />
         
         {/* 登入頁 */}
