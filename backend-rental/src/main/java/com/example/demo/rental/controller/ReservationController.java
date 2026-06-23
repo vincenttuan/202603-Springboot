@@ -103,4 +103,15 @@ public class ReservationController {
 		return ApiResponse.success("核准預約成功", reservationResponse);
 	}
 	
+	/**
+	 * 退回預約
+	 * 範例: GET /api/admin/reservations/{id}/reject
+	 * 
+	 * */
+	@GetMapping("/admin/reservations/{id}/reject")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ApiResponse<ReservationResponse> reject(@PathVariable Long id) {
+		ReservationResponse reservationResponse = reservationService.reject(id);
+		return ApiResponse.success("退回預約成功", reservationResponse);
+	}
 }
