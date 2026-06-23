@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,6 +67,16 @@ public class ReservationController {
 		return ApiResponse.success("查詢我的預約成功", reservationResponses);
 	}
 	
+	/**
+	 * 取消預約
+	 * 範例: PATCH /api/reservations/{id}/cancel
+	 * 
+	 * */
+	@PatchMapping("/reservations/{id}/cancel")
+	public ApiResponse<ReservationResponse> cancel(Authentication authentication, @PathVariable Long id) {
+		ReservationResponse reservationResponse = reservationService.cancelMine(authentication.getName(), id);
+		return ApiResponse.success("取消預約成功", reservationResponse);
+	}
 	
 	
 }
