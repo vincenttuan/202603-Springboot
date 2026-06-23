@@ -10,6 +10,6 @@ import AdminReservationsPage from './pages/AdminReservationsPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AdminReservationsPage />
+    <App />
   </StrictMode>,
 )
