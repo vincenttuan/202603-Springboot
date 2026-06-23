@@ -3,7 +3,6 @@ package com.example.demo.rental.aop;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.hibernate.internal.log.IncubationLogger_.logger;
 import org.springframework.stereotype.Component;
 import com.example.demo.rental.repository.RentalItemRepository;
 import lombok.extern.slf4j.Slf4j;
