@@ -1,15 +1,15 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import React from 'react'
+// BrowserRouter 讓 React 可以使用前端路由(網頁路徑切換)
+import { BrowserRouter } from 'react-router-dom'
+import './styles.css'
 import App from './App.jsx'
-import ItemsPage from './pages/ItemsPage.jsx'
-import LoginPage from './pages/LoginPage.jsx'
-import MyReservationPage from './pages/MyReservationPage.jsx'
-import AdminItemsPage from './pages/AdminItemsPage.jsx'
-import AdminReservationsPage from './pages/AdminReservationsPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>,
 )
