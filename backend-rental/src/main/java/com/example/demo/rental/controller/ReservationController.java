@@ -1,7 +1,10 @@
 package com.example.demo.rental.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,5 +53,18 @@ public class ReservationController {
 		return ApiResponse.created("建立預約成功, 等待管理者審核", reservation);
 		
 	}
+	
+	/**
+	 * 查詢我的預約
+	 * 範例: GET /api/reservations/my
+	 * 
+	 * */
+	@GetMapping("/reservations/my")
+	public ApiResponse<List<ReservationResponse>> findMine(Authentication authentication) {
+		List<ReservationResponse> reservationResponses = reservationService.findMine(authentication.getName());
+		return ApiResponse.success("查詢我的預約成功", reservationResponses);
+	}
+	
+	
 	
 }
