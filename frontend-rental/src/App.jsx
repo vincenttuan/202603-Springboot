@@ -10,6 +10,10 @@
  */
 
 import { Route, Routes } from "react-router-dom"
+
+// 匯入 Navbar
+import Navbar from "./components/Navbar"
+
 import ItemsPage from './pages/ItemsPage'
 import LoginPage from './pages/LoginPage'
 import MyReservationsPage from './pages/MyReservationsPage'
@@ -18,26 +22,31 @@ import AdminReservationsPage from './pages/AdminReservationsPage'
 
 function App() {
   return (
-    <main className="container">
-      {/* Routes 代表路由區域 */}
-      <Routes>
-        {/* 首頁(租用項目) */}
-        <Route path="/" element={<ItemsPage />} />
-        
-        {/* 登入頁 */}
-        <Route path="/login" element={<LoginPage />} />
+    <>
+      {/* Navbar 放在 Routers 的外面代表每一頁都可以看得到 */}
+      <Navbar />
 
-        {/* 我的預約頁 */}
-        <Route path="/my-reservations" element={<MyReservationsPage />} />
+      <main className="container">
+        {/* Routes 代表路由區域 */}
+        <Routes>
+          {/* 首頁(租用項目) */}
+          <Route path="/" element={<ItemsPage />} />
+          
+          {/* 登入頁 */}
+          <Route path="/login" element={<LoginPage />} />
 
-        {/* 管理者-項目管理頁 */}
-        <Route path="/admin/items" element={<AdminItemsPage />} />
+          {/* 我的預約頁 */}
+          <Route path="/my-reservations" element={<MyReservationsPage />} />
 
-        {/* 管理者-預約審核頁 */}
-        <Route path="/admin/reservations" element={<AdminReservationsPage />} />
-      </Routes>
+          {/* 管理者-項目管理頁 */}
+          <Route path="/admin/items" element={<AdminItemsPage />} />
 
-    </main>
+          {/* 管理者-預約審核頁 */}
+          <Route path="/admin/reservations" element={<AdminReservationsPage />} />
+        </Routes>
+
+      </main>
+    </>
   )
 
 }

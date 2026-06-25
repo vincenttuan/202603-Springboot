@@ -19,7 +19,7 @@ function Navbar() {
             <nav>
                 <Link to="/">租用項目</Link>
                 <Link to="/my-reservations">我的預約</Link>
-                <Link to="/admin/item">項目管理</Link>
+                <Link to="/admin/items">項目管理</Link>
                 <Link to="/admin/reservations">預約審核</Link>
                 <Link to="/login">登入</Link>
             </nav>
