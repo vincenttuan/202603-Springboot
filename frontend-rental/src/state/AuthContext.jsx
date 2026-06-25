@@ -10,7 +10,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 // 匯入 API 工具
-import { apiFetch } from '../apiFetch';
+import { apiFetch } from "../api/client";
 
 // 建立 AuthContext
 const AuthContext = createContext(null);
