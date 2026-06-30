@@ -73,6 +73,13 @@ function ItemsPage() {
                 {
                     items.map((item) => (
                         <article className="card" key={item.id}>
+                            {/* 如果後端有 imageUrl 就顯示圖片 */}
+                            {
+                                item.imageUrl && (
+                                    <img src={item.imageUrl} alt={item.name} className="item-image" />
+                                )
+                            }
+
                             <h2>{item.name}</h2>
                             <p>
                                 {item.type} | {item.location}
