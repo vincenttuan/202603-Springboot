@@ -7,7 +7,7 @@ import { useAuth } from '../state/AuthContext';
 
 function ProtectedRoute({ children, adminOnly = false}) {
 
-    const {isLogin, isAdmin} = useAuth();
+    const {isLogin, isAdmin, user} = useAuth();
 
     // 如果沒有登入就導回登入頁
     if(!isLogin) {
@@ -15,6 +15,7 @@ function ProtectedRoute({ children, adminOnly = false}) {
     }
 
     // 如果此頁面需要管理者角色, 但是目前的登入角色不是管理者, 就導回首頁
+    console.log(adminOnly, !isAdmin, user);
     if(adminOnly && !isAdmin) {
         return <Navigate to="/login" replace />
     }
