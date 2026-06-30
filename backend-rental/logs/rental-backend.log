@@ -467,3 +467,36 @@
 2026-06-30T19:03:35.396+08:00  INFO 16116 --- [backend-rental] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
 2026-06-30T19:03:36.104+08:00  INFO 16116 --- [backend-rental] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
 2026-06-30T19:03:36.110+08:00  INFO 16116 --- [backend-rental] [main] c.example.demo.BackendRentalApplication  : Started BackendRentalApplication in 3.472 seconds (process running for 3.825)
+2026-06-30T19:23:53.177+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-30T19:23:53.177+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-06-30T19:23:53.179+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-06-30T19:23:53.787+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-2] c.example.demo.rental.aop.LoggingAspect  : AuthService.login(..) 執行成功, 耗時 215 ms
+2026-06-30T19:23:53.788+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-2] c.example.demo.rental.aop.LoggingAspect  : AuthController.login(..) 執行成功, 耗時 217 ms
+2026-06-30T19:24:25.730+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-4] c.example.demo.rental.aop.LoggingAspect  : AuthService.login(..) 執行成功, 耗時 82 ms
+2026-06-30T19:24:25.731+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-4] c.example.demo.rental.aop.LoggingAspect  : AuthController.login(..) 執行成功, 耗時 83 ms
+2026-06-30T19:24:25.776+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-7] c.example.demo.rental.aop.LoggingAspect  : RentalItemService.findAll(..) 執行成功, 耗時 20 ms
+2026-06-30T19:24:25.777+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-7] c.example.demo.rental.aop.LoggingAspect  : RentalItemController.findAll(..) 執行成功, 耗時 21 ms
+2026-06-30T19:24:25.799+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-8] c.example.demo.rental.aop.LoggingAspect  : RentalItemService.findAll(..) 執行成功, 耗時 5 ms
+2026-06-30T19:24:25.799+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-8] c.example.demo.rental.aop.LoggingAspect  : RentalItemController.findAll(..) 執行成功, 耗時 5 ms
+2026-06-30T19:24:42.119+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-9] c.example.demo.rental.aop.LoggingAspect  : AuthService.login(..) 執行成功, 耗時 86 ms
+2026-06-30T19:24:42.119+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-9] c.example.demo.rental.aop.LoggingAspect  : AuthController.login(..) 執行成功, 耗時 86 ms
+2026-06-30T19:24:53.079+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-2] c.example.demo.rental.aop.LoggingAspect  : AuthService.login(..) 執行成功, 耗時 85 ms
+2026-06-30T19:24:53.079+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-2] c.example.demo.rental.aop.LoggingAspect  : AuthController.login(..) 執行成功, 耗時 85 ms
+2026-06-30T19:24:53.107+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-5] c.example.demo.rental.aop.LoggingAspect  : RentalItemService.findAll(..) 執行成功, 耗時 5 ms
+2026-06-30T19:24:53.107+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-5] c.example.demo.rental.aop.LoggingAspect  : RentalItemController.findAll(..) 執行成功, 耗時 5 ms
+2026-06-30T19:24:53.121+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-6] c.example.demo.rental.aop.LoggingAspect  : RentalItemService.findAll(..) 執行成功, 耗時 5 ms
+2026-06-30T19:24:53.121+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-6] c.example.demo.rental.aop.LoggingAspect  : RentalItemController.findAll(..) 執行成功, 耗時 5 ms
+2026-06-30T19:24:57.688+08:00  WARN 16116 --- [backend-rental] [http-nio-8080-exec-7] c.example.demo.rental.aop.LoggingAspect  : AuthService.login(..) 執行失敗, 耗時 84 ms, 原因: Bad credentials
+2026-06-30T19:24:57.688+08:00  WARN 16116 --- [backend-rental] [http-nio-8080-exec-7] c.example.demo.rental.aop.LoggingAspect  : AuthController.login(..) 執行失敗, 耗時 84 ms, 原因: Bad credentials
+2026-06-30T19:25:35.720+08:00  WARN 16116 --- [backend-rental] [http-nio-8080-exec-10] c.example.demo.rental.aop.LoggingAspect  : AuthService.login(..) 執行失敗, 耗時 105 ms, 原因: Bad credentials
+2026-06-30T19:25:35.722+08:00  WARN 16116 --- [backend-rental] [http-nio-8080-exec-10] c.example.demo.rental.aop.LoggingAspect  : AuthController.login(..) 執行失敗, 耗時 107 ms, 原因: Bad credentials
+2026-06-30T19:25:37.481+08:00  WARN 16116 --- [backend-rental] [http-nio-8080-exec-9] c.example.demo.rental.aop.LoggingAspect  : AuthService.login(..) 執行失敗, 耗時 81 ms, 原因: Bad credentials
+2026-06-30T19:25:37.482+08:00  WARN 16116 --- [backend-rental] [http-nio-8080-exec-9] c.example.demo.rental.aop.LoggingAspect  : AuthController.login(..) 執行失敗, 耗時 82 ms, 原因: Bad credentials
+2026-06-30T19:26:39.794+08:00  WARN 16116 --- [backend-rental] [http-nio-8080-exec-2] c.example.demo.rental.aop.LoggingAspect  : AuthService.login(..) 執行失敗, 耗時 88 ms, 原因: Bad credentials
+2026-06-30T19:26:39.794+08:00  WARN 16116 --- [backend-rental] [http-nio-8080-exec-2] c.example.demo.rental.aop.LoggingAspect  : AuthController.login(..) 執行失敗, 耗時 89 ms, 原因: Bad credentials
+2026-06-30T19:27:01.831+08:00  WARN 16116 --- [backend-rental] [http-nio-8080-exec-3] c.example.demo.rental.aop.LoggingAspect  : AuthService.login(..) 執行失敗, 耗時 82 ms, 原因: Bad credentials
+2026-06-30T19:27:01.832+08:00  WARN 16116 --- [backend-rental] [http-nio-8080-exec-3] c.example.demo.rental.aop.LoggingAspect  : AuthController.login(..) 執行失敗, 耗時 83 ms, 原因: Bad credentials
+2026-06-30T19:27:12.535+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-6] c.example.demo.rental.aop.LoggingAspect  : AuthService.login(..) 執行成功, 耗時 83 ms
+2026-06-30T19:27:12.535+08:00  INFO 16116 --- [backend-rental] [http-nio-8080-exec-6] c.example.demo.rental.aop.LoggingAspect  : AuthController.login(..) 執行成功, 耗時 83 ms
+2026-06-30T19:27:30.807+08:00  WARN 16116 --- [backend-rental] [http-nio-8080-exec-8] c.example.demo.rental.aop.LoggingAspect  : AuthService.login(..) 執行失敗, 耗時 87 ms, 原因: Bad credentials
+2026-06-30T19:27:30.808+08:00  WARN 16116 --- [backend-rental] [http-nio-8080-exec-8] c.example.demo.rental.aop.LoggingAspect  : AuthController.login(..) 執行失敗, 耗時 88 ms, 原因: Bad credentials
