@@ -15,7 +15,7 @@ import { Route, Routes } from "react-router-dom"
 import Navbar from "./components/Navbar"
 
 // 匯入 ProtectedRoute
-import ProtectedRoute from "./components/ProtectedRoute"
+import ProtectedRoute from './components/ProtectedRoute';
 
 import ItemsPage from './pages/ItemsPage'
 import LoginPage from './pages/LoginPage'
@@ -30,42 +30,40 @@ function App() {
       <Navbar />
 
       <main className="container">
-        {/* Routes 代表路由區域 */}
         <Routes>
-          {/* 首頁(租用項目) */}
           <Route path="/" element={<ItemsPage />} />
-          
-          {/* 登入頁 */}
           <Route path="/login" element={<LoginPage />} />
 
-          {/* 我的預約頁: 需要登入 */}
-          <Route 
-            path="/my-reservations" 
+          {/* 我的預約：需要登入 */}
+          <Route
+            path="/my-reservations"
             element={
               <ProtectedRoute>
                 <MyReservationsPage />
               </ProtectedRoute>
-            } />
+            }
+          />
 
-          {/* 管理者-項目管理頁 */}
-          <Route 
-            path="/admin/items" 
+          {/* 項目管理：需要管理者 */}
+          <Route
+            path="/admin/items"
             element={
               <ProtectedRoute adminOnly>
                 <AdminItemsPage />
               </ProtectedRoute>
-            } />
+            }
+          />
 
-          {/* 管理者-預約審核頁 */}
-          <Route 
-            path="/admin/reservations" 
+          {/* 預約審核：需要管理者 */}
+          <Route
+            path="/admin/reservations"
             element={
               <ProtectedRoute adminOnly>
                 <AdminReservationsPage />
               </ProtectedRoute>
-            } />
+            }
+          />
         </Routes>
-
       </main>
     </>
   )

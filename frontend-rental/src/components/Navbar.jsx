@@ -43,10 +43,10 @@ function Navbar() {
                 { isLogin && <Link to="/my-reservations">我的預約</Link> }
 
                 {/* 管理者才能看到項目管理 */}
-                { isAdmin && <Link to="/admin/items">項目管理</Link> }
+                { isLogin && isAdmin && <Link to="/admin/items">項目管理</Link> }
 
                 {/* 管理者才能看到預約審核 */}
-                { isAdmin && <Link to="/admin/reservations">預約審核</Link> }
+                { isLogin && isAdmin && <Link to="/admin/reservations">預約審核</Link> }
 
             </nav>
 
