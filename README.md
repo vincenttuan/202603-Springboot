@@ -1,3 +1,6 @@
+# 上課講義
+https://docs.google.com/document/d/1Ty8AeuoDcs-u8OzMYncGBxc9ASlI-8Pa3yaYD0fF_7E/edit?usp=drive_link
+
 # 租用設備專題
 # 建立資料庫
 CREATE DATABASE rental_db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
